@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hệ Thống Tính Toán & Quản Lý Bệnh Án</title>
-    <!-- Sử dụng Tailwind CSS từ CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen p-4 sm:p-6">
@@ -12,44 +11,38 @@
     <div class="max-w-4xl mx-auto">
         <header class="text-center mb-6">
             <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Đồng bộ tự động từ GitHub (Điện thoại & Máy tính)</p>
+            <p class="text-sm text-slate-400 mt-1">Đọc danh sách trực tiếp từ GitHub & Tính toán tự động</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
         <div class="flex border-b border-slate-700 mb-6">
-            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Quản lý Danh sách Tên</button>
+            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Chọn Danh Sách Tên (Từ GitHub)</button>
             <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Tab 2: Nhập Liệu & Tính Toán</button>
         </div>
 
         <!-- ================= TAB 1 ================= -->
         <div id="tabContent1" class="space-y-6">
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700">
-                <h2 class="text-lg font-semibold mb-3 text-cyan-300">1. Chọn hoặc Tải Danh Sách Tên (.txt)</h2>
+                <h2 class="text-lg font-semibold mb-3 text-cyan-300">Chọn tệp danh sách .txt sẵn có trên GitHub</h2>
                 
-                <!-- Chọn danh sách tự động từ GitHub -->
+                <!-- Ô tự động quét danh sách file .txt từ GitHub -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Chọn danh sách tự động từ GitHub:</label>
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Chọn tệp danh sách tên:</label>
                     <div class="flex gap-2">
                         <select id="githubFileList" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                             <option value="">-- Đang quét danh sách file .txt từ GitHub... --</option>
                         </select>
-                        <button onclick="loadAutoSelectedFile()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2.5 rounded-lg font-bold transition">Tải Về</button>
+                        <button onclick="loadTxtFromGitHub()" class="bg-cyan-600 hover:bg-cyan-500 px-5 py-2.5 rounded-lg font-bold transition shadow">Nạp Danh Sách</button>
                     </div>
                 </div>
 
-                <!-- Tải file từ máy tính/điện thoại -->
+                <!-- Hiển thị nội dung danh sách đang chọn -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc tải tệp `.txt` từ thiết bị:</label>
-                    <input type="file" id="txtFileInput" accept=".txt" class="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-500 cursor-pointer">
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Nội dung tên trong tệp (có thể chỉnh sửa trực tiếp nếu muốn):</label>
+                    <textarea id="namesInput" rows="8" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" placeholder="Danh sách tên sẽ tự động hiện ở đây khi bạn chọn tệp..."></textarea>
                 </div>
 
-                <!-- Nhập trực tiếp danh sách -->
-                <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc nhập/chỉnh sửa danh sách trực tiếp (mỗi tên 1 dòng):</label>
-                    <textarea id="namesInput" rows="6" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" placeholder="NAM&#10;LAN&#10;HÙNG"></textarea>
-                </div>
-
-                <button onclick="saveAndApplyNames()" class="w-full bg-cyan-600 hover:bg-cyan-500 font-bold py-2.5 px-4 rounded-lg transition shadow">Lưu & Cập Nhật Danh Sách Vào Tab 2</button>
+                <button onclick="saveAndApplyNames()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-3 px-4 rounded-lg transition shadow">Xác Nhận & Sang Tab 2 Nhập Liệu</button>
             </div>
         </div>
 
@@ -71,11 +64,11 @@
                 <h2 class="text-lg font-semibold text-cyan-300">Nhập Thông Tin Khám & Bệnh Án</h2>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Chọn tên từ Tab 1 -->
+                    <!-- Chọn tên từ danh sách đã nạp -->
                     <div>
                         <label class="block text-sm font-medium mb-1 text-slate-300">Chọn Tên Người (Cột 1):</label>
                         <select id="selectedName" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
-                            <option value="">-- Chọn tên từ danh sách --</option>
+                            <option value="">-- Chưa nạp danh sách ở Tab 1 --</option>
                         </select>
                     </div>
 
@@ -106,12 +99,12 @@
                 </div>
             </div>
 
-            <!-- Bảng kết quả hiển thị tạm thời -->
+            <!-- Bảng kết quả -->
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
                 <div class="flex justify-between items-center">
                     <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả Đã Tính</h2>
                     <div class="space-x-2">
-                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">Tải Tệp Kết Quả (.txt)</button>
+                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">Tải Tệp Kết Quả (.txt) Về Máy</button>
                         <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition">Xóa Hết</button>
                     </div>
                 </div>
@@ -147,7 +140,7 @@
         let globalNames = [];
         let resultsData = [];
 
-        // Tự động quét danh sách file .txt từ GitHub khi tải trang
+        // 1. Tự động quét tất cả file .txt từ kho GitHub của bạn khi mở web trên điện thoại/máy tính
         async function fetchRepoTxtFiles() {
             const repoOwner = "namnguyen7133-png";
             const repoName = "ghi_ngay_mac_benh";
@@ -160,18 +153,18 @@
                     const files = await response.json();
                     const txtFiles = files.filter(file => file.name.endsWith('.txt'));
                     
-                    selectEl.innerHTML = '<option value="">-- Chọn file .txt trên GitHub --</option>';
+                    selectEl.innerHTML = '<option value="">-- Chọn một tệp danh sách .txt trên GitHub --</option>';
                     txtFiles.forEach(file => {
                         let opt = document.createElement('option');
-                        opt.value = file.download_url;
+                        opt.value = file.download_url; // Lấy link tải ngầm file từ GitHub
                         opt.textContent = file.name;
                         selectEl.appendChild(opt);
                     });
                     if(txtFiles.length === 0) {
-                        selectEl.innerHTML = '<option value="">Không tìm thấy file .txt nào trên repo</option>';
+                        selectEl.innerHTML = '<option value="">Không tìm thấy tệp .txt nào trên repo</option>';
                     }
                 } else {
-                    selectEl.innerHTML = '<option value="">Không tải được danh sách file</option>';
+                    selectEl.innerHTML = '<option value="">Không tải được danh sách từ GitHub</option>';
                 }
             } catch (err) {
                 selectEl.innerHTML = '<option value="">Lỗi kết nối GitHub API</option>';
@@ -182,11 +175,11 @@
             fetchRepoTxtFiles();
         });
 
-        // Tải nội dung file được chọn từ GitHub
-        async function loadAutoSelectedFile() {
+        // 2. Tải nội dung tệp .txt được chọn từ GitHub đưa vào ô văn bản
+        async function loadTxtFromGitHub() {
             const fileUrl = document.getElementById('githubFileList').value;
             if (!fileUrl) {
-                alert("Vui lòng chọn một file từ danh sách!");
+                alert("Vui lòng chọn một tệp danh sách từ danh sách thả xuống!");
                 return;
             }
             try {
@@ -194,12 +187,12 @@
                 if (res.ok) {
                     const text = await res.text();
                     document.getElementById('namesInput').value = text;
-                    saveAndApplyNames();
+                    alert("Đã tải thành công nội dung tệp từ GitHub vào ứng dụng!");
                 } else {
-                    alert("Không tải được nội dung file!");
+                    alert("Không thể tải nội dung tệp!");
                 }
             } catch (err) {
-                alert("Lỗi: " + err);
+                alert("Lỗi tải tệp: " + err);
             }
         }
 
@@ -237,37 +230,29 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Đọc file txt tải lên từ máy/điện thoại
-        document.getElementById('txtFileInput').addEventListener('change', function(e) {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = function(evt) {
-                const content = evt.target.result;
-                document.getElementById('namesInput').value = content;
-                saveAndApplyNames();
-            };
-            reader.readAsText(file);
-        });
-
-        // Lưu và áp dụng danh sách vào ô chọn (Tab 2)
+        // 3. Đưa danh sách tên từ Tab 1 vào ô cuộn chọn ở Tab 2
         function saveAndApplyNames() {
             const rawText = document.getElementById('namesInput').value;
             globalNames = rawText.split(/\r?\n/).map(n => n.trim()).filter(n => n);
             
+            if (globalNames.length === 0) {
+                alert("Danh sách tên đang trống!");
+                return;
+            }
+
             const selectEl = document.getElementById('selectedName');
-            selectEl.innerHTML = '<option value="">-- Chọn tên từ danh sách --</option>';
+            selectEl.innerHTML = '<option value="">-- Chọn tên người --</option>';
             globalNames.forEach(name => {
                 let opt = document.createElement('option');
                 opt.value = name;
                 opt.textContent = name;
                 selectEl.appendChild(opt);
             });
-            alert(`Đã cập nhật thành công ${globalNames.length} tên vào danh sách chọn!`);
+            alert(`Đã nạp thành công ${globalNames.length} tên vào bảng chọn. Chuyển sang Tab 2 để nhập liệu!`);
             switchTab(2);
         }
 
-        // Tính toán toàn bộ các cột theo yêu cầu
+        // Tính toán các cột
         function calculateAndAdd() {
             const name = document.getElementById('selectedName').value;
             const birthVal = document.getElementById('birthDate').value;
@@ -363,7 +348,7 @@
             }
         }
 
-        // Xuất file .txt theo đúng định dạng Tab chuẩn
+        // Xuất file kết quả ra định dạng chuẩn để đưa cho Python
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
