@@ -11,7 +11,7 @@
     <div class="max-w-4xl mx-auto">
         <header class="text-center mb-6">
             <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Tính toán chính xác theo Ngày & Giờ nhập vào (Hỗ trợ quá khứ)</p>
+            <p class="text-sm text-slate-400 mt-1">Tính toán chuẩn xác theo công thức đổi ngày ra giờ & cộng/trừ giờ sinh</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
@@ -70,14 +70,17 @@
                         </select>
                     </div>
 
-                    <!-- Ngày tháng năm sinh -->
+                    <!-- Ngày tháng năm sinh & Giờ sinh -->
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Tháng Năm Sinh:</label>
-                        <input type="date" id="birthDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh & Giờ Sinh:</label>
+                        <div class="flex gap-2">
+                            <input type="date" id="birthDate" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                            <input type="time" id="birthTime" value="00:00" class="w-32 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Giờ sinh">
+                        </div>
                     </div>
                 </div>
 
-                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào (Cho phép sửa quá khứ) -->
+                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
                     <div>
                         <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Nhập Vào (Sự Kiện):</label>
@@ -123,7 +126,7 @@
                             <tr>
                                 <th class="p-3">Thao tác</th>
                                 <th class="p-3">C1 (Tên)</th>
-                                <th class="p-3">C2 (Lệch Ngày)</th>
+                                <th class="p-3">C2 (Số Giờ Đã Xử Lý)</th>
                                 <th class="p-3">C3 (STT Phút)</th>
                                 <th class="p-3">C4 (Thương số)</th>
                                 <th class="p-3">C5 (Nguyên)</th>
@@ -163,6 +166,9 @@
             }
             if(!document.getElementById('eventTime').value) {
                 document.getElementById('eventTime').value = `${hours}:${minutes}`;
+            }
+            if(!document.getElementById('birthTime').value) {
+                document.getElementById('birthTime').value = "00:00";
             }
         }
 
@@ -283,48 +289,66 @@
             switchTab(2);
         }
 
-        // Tính toán đầy đủ theo Ngày & Giờ nhập vào (Hỗ trợ quá khứ)
+        // Tính toán chuẩn theo yêu cầu: Đổi ngày lệch ra giờ, cộng/trừ giờ sinh rồi chia cho STT phút
         function calculateAndAdd() {
             const name = document.getElementById('selectedName').value;
             const birthVal = document.getElementById('birthDate').value;
+            const birthTimeVal = document.getElementById('birthTime').value || "00:00";
             const eventDateVal = document.getElementById('eventDate').value;
             const eventTimeVal = document.getElementById('eventTime').value;
             const symptom = document.getElementById('symptomInput').value;
             const cure = document.getElementById('cureInput').value;
 
             if (!name || !birthVal || !eventDateVal || !eventTimeVal || !symptom || !cure) {
-                alert("Vui lòng điền đầy đủ tất cả các thông tin (bao gồm ngày và giờ nhập vào)!");
+                alert("Vui lòng điền đầy đủ tất cả các thông tin cần thiết!");
                 return;
             }
 
             const birthDateObj = new Date(birthVal);
-            const eventDateObj = new Date(eventDateVal); // Ngày nhập vào do người dùng chọn
+            const eventDateObj = new Date(eventDateVal);
 
-            // Cột 2: Lấy Ngày nhập vào trừ đi Ngày sinh (chênh lệch ngày)
+            // 1. Tính số ngày chênh lệch giữa ngày sự kiện và ngày sinh
             const diffTime = eventDateObj - birthDateObj;
-            const col2 = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const dayDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            // Tách giờ và phút từ ô nhập giờ
-            const [hoursStr, minutesStr] = eventTimeVal.split(':');
-            const hours = parseInt(hoursStr, 10);
-            const minutes = parseInt(minutesStr, 10);
+            // 2. Đổi số ngày chênh lệch ra giờ (= số ngày * 24)
+            let totalHours = dayDiff * 24;
 
-            // Cột 3: STT phút của giờ phút nhập vào (Giờ * 60 + Phút)
-            const col3 = hours * 60 + minutes;
+            // 3. Xử lý giờ sinh: Cộng nếu trước 24h đêm (tức giờ < 12 trưa hoặc tính theo quy ước), trừ nếu sau 24h đêm
+            // Ở đây dựa trên giờ sinh (HH:mm): nếu giờ sinh < 12 (trước 24h tính theo nửa đầu hoặc quy ước trước/sau 24h)
+            // Theo yêu cầu: "cộng với giờ sinh trước 24 giờ đêm và trừ đi sinh sau 24 giờ đêm"
+            const [bHoursStr, bMinutesStr] = birthTimeVal.split(':');
+            const birthHours = parseInt(bHoursStr, 10);
+            
+            // Quy ước trước 24 giờ đêm (ví dụ trước 12:00 trưa hoặc giờ < 12), nếu người dùng nhập giờ sinh cụ thể:
+            if (birthHours < 12) {
+                totalHours += birthHours; // Cộng với giờ sinh trước 24 giờ đêm
+            } else {
+                totalHours -= birthHours; // Trừ đi nếu sau 24 giờ đêm
+            }
+
+            // Cột 2 sau khi đã cộng/trừ giờ
+            const col2 = totalHours;
+
+            // 4. Lấy STT phút của giờ phút nhập vào sự kiện (Cột 3)
+            const [eHoursStr, eMinutesStr] = eventTimeVal.split(':');
+            const eventHours = parseInt(eHoursStr, 10);
+            const eventMinutes = parseInt(eMinutesStr, 10);
+            const col3 = eventHours * 60 + eventMinutes;
 
             if (col3 === 0) {
                 alert("STT phút nhập vào đang là 0 (00:00), không thể chia!");
                 return;
             }
 
-            // Thực hiện các phép tính đầy đủ theo yêu cầu
+            // 5. Thực hiện các phép tính chia cho số thứ tự giờ phút vừa nhập
             const col4 = (col2 / col3).toFixed(2);       // Thương số
             const col5 = Math.floor(col2 / col3);       // Phần nguyên (Cột 5)
             const col6 = col2 % col3;                   // Phần dư (Cột 6)
             const col7 = col5 % 1000;                   // Phần dư 1000 của Cột 5 (Cột 7)
             const col8 = col6 % 1000;                   // Phần dư 1000 của Cột 6 (Cột 8)
 
-            const timeFormatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+            const timeFormatted = `${eventHours.toString().padStart(2, '0')}:${eventMinutes.toString().padStart(2, '0')}`;
 
             const rowData = {
                 id: Date.now(),
@@ -393,6 +417,7 @@
         function clearForm() {
             document.getElementById('selectedName').value = "";
             document.getElementById('birthDate').value = "";
+            document.getElementById('birthTime').value = "00:00";
             document.getElementById('symptomInput').value = "";
             document.getElementById('cureInput').value = "";
             setDefaultEventTime();
