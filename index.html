@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hệ Thống Tính Toán & Quản Lý Bệnh Án</title>
+    <!-- Sử dụng Tailwind CSS từ CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-slate-900 text-slate-100 min-h-screen p-4 sm:p-6">
+
+    <div class="max-w-4xl mx-auto">
+        <header class="text-center mb-6">
+            <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
+            <p class="text-sm text-slate-400 mt-1">Đồng bộ giữa Điện thoại và Máy tính (Python)</p>
+        </header>
+
+        <!-- Thanh chuyển Tabs -->
+        <div class="flex border-b border-slate-700 mb-6">
+            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Quản lý Danh sách Tên</button>
+            <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Tab 2: Nhập Liệu & Tính Toán</button>
+        </div>
+
+        <!-- ================= TAB 1 ================= -->
+        <div id="tabContent1" class="space-y-6">
+            <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700">
+                <h2 class="text-lg font-semibold mb-3 text-cyan-300">1. Chọn hoặc Tải Danh Sách Tên (.txt)</h2>
+                
+                <!-- Chọn danh sách mẫu có sẵn -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Chọn danh sách mẫu từ GitHub/Thư mục:</label>
+                    <select id="githubListSelect" onchange="loadSelectedList()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                        <option value="">-- Chọn danh sách có sẵn --</option>
+                        <option value="danhsach_1.txt">Danh sách 1</option>
+                        <option value="danhsach_2.txt">Danh sách 2</option>
+                    </select>
+                </div>
+
+                <!-- Tải file từ máy tính -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc tải tệp `.txt` từ máy/điện thoại:</label>
+                    <input type="file" id="txtFileInput" accept=".txt" class="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-500 cursor-pointer">
+                </div>
+
+                <!-- Nhập trực tiếp danh sách -->
+                <div class="mb-4">
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc nhập/chỉnh sửa danh sách trực tiếp (mỗi tên 1 dòng):</label>
+                    <textarea id="namesInput" rows="6" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" placeholder="NAM&#10;LAN&#10;HÙNG"></textarea>
+                </div>
+
+                <button onclick="saveAndApplyNames()" class="w-full bg-cyan-600 hover:bg-cyan-500 font-bold py-2.5 px-4 rounded-lg transition shadow">Lưu & Cập Nhật Danh Sách Vào Tab 2</button>
+            </div>
+        </div>
+
+        <!-- ================= TAB 2 ================= -->
+        <div id="tabContent2" class="hidden space-y-6">
+            <!-- Đồng hồ & Thời gian thực -->
+            <div class="bg-slate-800 p-4 rounded-xl shadow-lg border border-slate-700 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
+                <div>
+                    <span id="currentDateDisplay" class="text-cyan-300 font-medium">Đang tải thời gian...</span>
+                </div>
+                <div class="bg-slate-900 px-4 py-2 rounded-lg border border-slate-700">
+                    <span class="text-xs text-slate-400 block">STT Phút trong ngày:</span>
+                    <span id="currentSttMin" class="text-xl font-bold text-emerald-400">0</span>
+                </div>
+            </div>
+
+            <!-- Form Nhập Liệu -->
+            <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
+                <h2 class="text-lg font-semibold text-cyan-300">Nhập Thông Tin Khám & Bệnh Án</h2>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Chọn tên từ Tab 1 -->
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Chọn Tên Người (Cột 1):</label>
+                        <select id="selectedName" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                            <option value="">-- Chọn tên từ danh sách --</option>
+                        </select>
+                    </div>
+
+                    <!-- Ngày tháng năm sinh -->
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Tháng Năm Sinh:</label>
+                        <input type="date" id="birthDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                    <!-- Triệu chứng -->
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Triệu Chứng Bệnh:</label>
+                        <input type="text" id="symptomInput" placeholder="Ví dụ: Hoa mắt, chóng mặt" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                    </div>
+
+                    <!-- Cách chữa / Thuốc -->
+                    <div>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Cách Chữa Bệnh / Thuốc:</label>
+                        <input type="text" id="cureInput" placeholder="Ví dụ: Trà gừng mật ong nóng" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                    </div>
+                </div>
+
+                <div class="flex gap-3 pt-2">
+                    <button onclick="calculateAndAdd()" class="flex-1 bg-emerald-600 hover:bg-emerald-500 font-bold py-3 px-4 rounded-lg transition shadow">Tính & Thêm Vào Bảng</button>
+                    <button onclick="clearForm()" class="bg-slate-700 hover:bg-slate-600 font-bold py-3 px-4 rounded-lg transition text-slate-300">Làm mới</button>
+                </div>
+            </div>
+
+            <!-- Bảng kết quả hiển thị tạm thời -->
+            <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
+                <div class="flex justify-between items-center">
+                    <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả Đã Tính</h2>
+                    <div class="space-x-2">
+                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">Tải Tệp Kết Quả (.txt)</button>
+                        <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition">Xóa Hết</button>
+                    </div>
+                </div>
+
+                <div class="overflow-x-auto border border-slate-700 rounded-lg">
+                    <table class="w-full text-left text-xs text-slate-300 whitespace-nowrap">
+                        <thead class="bg-slate-900 text-cyan-400 uppercase font-semibold">
+                            <tr>
+                                <th class="p-3">C1 (Tên)</th>
+                                <th class="p-3">C2 (Lệch Ngày)</th>
+                                <th class="p-3">C3 (STT Phút)</th>
+                                <th class="p-3">C4 (Thương số)</th>
+                                <th class="p-3">C5 (Nguyên)</th>
+                                <th class="p-3">C6 (Dư)</th>
+                                <th class="p-3">C7 (Dư 1000 C5)</th>
+                                <th class="p-3">C8 (Dư 1000 C6)</th>
+                                <th class="p-3">Giờ:Phút</th>
+                                <th class="p-3">Bệnh</th>
+                                <th class="p-3">Thuốc</th>
+                            </tr>
+                        </thead>
+                        <tbody id="resultTableBody" class="divide-y divide-slate-700">
+                            <tr><td colspan="11" class="p-4 text-center text-slate-500">Chưa có dữ liệu tính toán nào.</td></tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        let globalNames = [];
+        let resultsData = [];
+
+        // Chuyển Tab
+        function switchTab(tabNum) {
+            if (tabNum === 1) {
+                document.getElementById('tabContent1').classList.remove('hidden');
+                document.getElementById('tabContent2').classList.add('hidden');
+                document.getElementById('tabBtn1').className = "flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition";
+                document.getElementById('tabBtn2').className = "flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition";
+            } else {
+                document.getElementById('tabContent1').classList.add('hidden');
+                document.getElementById('tabContent2').classList.remove('hidden');
+                document.getElementById('tabBtn2').className = "flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition";
+                document.getElementById('tabBtn1').className = "flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition";
+            }
+        }
+
+        // Đồng hồ thời gian thực
+        function updateClock() {
+            const now = new Date();
+            const days = ['Chủ Nhật', 'Thứ Hai', 'Thứ Ba', 'Thứ Tư', 'Thứ Năm', 'Thứ Sáu', 'Thứ Bảy'];
+            const dayName = days[now.getDay()];
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const seconds = now.getSeconds();
+            const dateStr = `${now.getDate().toString().padStart(2, '0')}/${(now.getMonth() + 1).toString().padStart(2, '0')}/${now.getFullYear()}`;
+            const timeStr = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
+            
+            document.getElementById('currentDateDisplay').innerText = `${dayName}, Ngày ${dateStr} - Giờ: ${timeStr}`;
+            
+            // STT phút từ 00:00
+            const sttMin = hours * 60 + minutes;
+            document.getElementById('currentSttMin').innerText = sttMin;
+        }
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Đọc file txt tải lên máy
+        document.getElementById('txtFileInput').addEventListener('change', function(e) {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = function(evt) {
+                const content = evt.target.result;
+                document.getElementById('namesInput').value = content;
+                saveAndApplyNames();
+            };
+            reader.readAsText(file);
+        });
+
+        // Đọc danh sách mẫu từ GitHub
+        async function loadSelectedList() {
+            const filename = document.getElementById('githubListSelect').value;
+            if (!filename) return;
+            try {
+                const res = await fetch(filename);
+                if (res.ok) {
+                    const text = await res.text();
+                    document.getElementById('namesInput').value = text;
+                    saveAndApplyNames();
+                } else {
+                    alert("Không tìm thấy file mẫu này trên GitHub. Hãy đảm bảo bạn đã đẩy file lên.");
+                }
+            } catch (err) {
+                alert("Lỗi tải file: " + err);
+            }
+        }
+
+        // Lưu và áp dụng danh sách vào ô chọn (Tab 2)
+        function saveAndApplyNames() {
+            const rawText = document.getElementById('namesInput').value;
+            globalNames = rawText.split(/\r?\n/).map(n => n.trim()).filter(n => n);
+            
+            const selectEl = document.getElementById('selectedName');
+            selectEl.innerHTML = '<option value="">-- Chọn tên từ danh sách --</option>';
+            globalNames.forEach(name => {
+                let opt = document.createElement('option');
+                opt.value = name;
+                opt.textContent = name;
+                selectEl.appendChild(opt);
+            });
+            alert(`Đã cập nhật thành công ${globalNames.length} tên vào danh sách chọn!`);
+            switchTab(2);
+        }
+
+        // Tính toán toàn bộ các cột theo yêu cầu
+        function calculateAndAdd() {
+            const name = document.getElementById('selectedName').value;
+            const birthVal = document.getElementById('birthDate').value;
+            const symptom = document.getElementById('symptomInput').value;
+            const cure = document.getElementById('cureInput').value;
+
+            if (!name || !birthVal || !symptom || !cure) {
+                alert("Vui lòng điền đầy đủ tất cả các thông tin!");
+                return;
+            }
+
+            const now = new Date();
+            const birthDateObj = new Date(birthVal);
+
+            // Cột 2: Lấy ngày hiện tại trừ đi ngày tháng năm sinh (tính bằng số ngày chênh lệch)
+            const diffTime = now - birthDateObj;
+            const col2 = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+
+            // Cột 3: STT phút hiện tại
+            const hours = now.getHours();
+            const minutes = now.getMinutes();
+            const col3 = hours * 60 + minutes;
+
+            if (col3 === 0) {
+                alert("STT phút đang là 0, không thể chia!");
+                return;
+            }
+
+            // Cột 4: Thương số (Cột 2 / Cột 3)
+            const col4 = (col2 / col3).toFixed(2);
+
+            // Cột 5: Phần nguyên của phép tính
+            const col5 = Math.floor(col2 / col3);
+
+            // Cột 6: Phần dư của phép tính
+            const col6 = col2 % col3;
+
+            // Cột 7: Phần nguyên chia 1000 lấy phần dư
+            const col7 = col5 % 1000;
+
+            // Cột 8: Phần dư chia 1000 lấy phần dư
+            const col8 = col6 % 1000;
+
+            // Giờ phút định dạng HH:mm
+            const timeFormatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
+
+            const rowData = {
+                col1: name,
+                col2: col2,
+                col3: col3,
+                col4: col4,
+                col5: col5,
+                col6: col6,
+                col7: col7,
+                col8: col8,
+                time: timeFormatted,
+                symptom: symptom,
+                cure: cure
+            };
+
+            resultsData.push(rowData);
+            renderTable();
+            clearForm();
+        }
+
+        function renderTable() {
+            const tbody = document.getElementById('resultTableBody');
+            if (resultsData.length === 0) {
+                tbody.innerHTML = `<tr><td colspan="11" class="p-4 text-center text-slate-500">Chưa có dữ liệu tính toán nào.</td></tr>`;
+                return;
+            }
+
+            tbody.innerHTML = '';
+            resultsData.forEach(item => {
+                let tr = document.createElement('tr');
+                tr.className = "hover:bg-slate-700/50 transition";
+                tr.innerHTML = `
+                    <td class="p-3 font-semibold text-white">${item.col1}</td>
+                    <td class="p-3">${item.col2}</td>
+                    <td class="p-3">${item.col3}</td>
+                    <td class="p-3">${item.col4}</td>
+                    <td class="p-3 text-cyan-300 font-bold">${item.col5}</td>
+                    <td class="p-3 text-amber-300 font-bold">${item.col6}</td>
+                    <td class="p-3 text-purple-300">${item.col7}</td>
+                    <td class="p-3 text-pink-300">${item.col8}</td>
+                    <td class="p-3">${item.time}</td>
+                    <td class="p-3">${item.symptom}</td>
+                    <td class="p-3">${item.cure}</td>
+                `;
+                tbody.appendChild(tr);
+            });
+        }
+
+        function clearForm() {
+            document.getElementById('selectedName').value = "";
+            document.getElementById('birthDate').value = "";
+            document.getElementById('symptomInput').value = "";
+            document.getElementById('cureInput').value = "";
+        }
+
+        function clearResults() {
+            if (confirm("Bạn có chắc chắn muốn xóa hết dữ liệu bảng không?")) {
+                resultsData = [];
+                renderTable();
+            }
+        }
+
+        // Xuất file .txt theo đúng định dạng Tab bạn yêu cầu để Python dễ đọc
+        function exportTxtFile() {
+            if (resultsData.length === 0) {
+                alert("Chưa có dữ liệu để xuất!");
+                return;
+            }
+
+            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
+            
+            resultsData.forEach(item => {
+                fileContent += `${item.col1}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col4}\t${item.time}\t${item.col1}\t${item.symptom}\t${item.cure}\t${item.col3}\n`;
+            });
+
+            const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = `ket_qua_benh_an_${new Date().toISOString().slice(0,10)}.txt`;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>
