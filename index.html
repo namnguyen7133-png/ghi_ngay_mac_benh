@@ -11,7 +11,7 @@
     <div class="max-w-4xl mx-auto">
         <header class="text-center mb-6">
             <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Lưu trữ tự động trên trình duyệt & Tùy chọn thời gian quá khứ</p>
+            <p class="text-sm text-slate-400 mt-1">Tính toán chính xác theo Ngày & Giờ nhập vào (Hỗ trợ quá khứ)</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
@@ -46,7 +46,7 @@
 
         <!-- ================= TAB 2 ================= -->
         <div id="tabContent2" class="hidden space-y-6">
-            <!-- Đồng hồ & Thời gian thực (để tham khảo) -->
+            <!-- Đồng hồ & Thời gian thực -->
             <div class="bg-slate-800 p-4 rounded-xl shadow-lg border border-slate-700 flex flex-col sm:flex-row justify-between items-center text-center sm:text-left gap-2">
                 <div>
                     <span id="currentDateDisplay" class="text-cyan-300 font-medium">Đang tải thời gian...</span>
@@ -77,14 +77,14 @@
                     </div>
                 </div>
 
-                <!-- Bổ sung ô chọn Ngày sự kiện & Giờ phút sự kiện (Cho phép sửa quá khứ) -->
+                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào (Cho phép sửa quá khứ) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Xảy Ra Sự Kiện:</label>
+                        <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Nhập Vào (Sự Kiện):</label>
                         <input type="date" id="eventDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-amber-300">Giờ & Phút Xảy Ra (HH:mm):</label>
+                        <label class="block text-sm font-medium mb-1 text-amber-300">Giờ & Phút Nhập Vào (HH:mm):</label>
                         <input type="time" id="eventTime" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                 </div>
@@ -130,7 +130,7 @@
                                 <th class="p-3">C6 (Dư)</th>
                                 <th class="p-3">C7 (Dư 1000 C5)</th>
                                 <th class="p-3">C8 (Dư 1000 C6)</th>
-                                <th class="p-3">Ngày Sự Kiện</th>
+                                <th class="p-3">Ngày Nhập</th>
                                 <th class="p-3">Giờ:Phút</th>
                                 <th class="p-3">Bệnh</th>
                                 <th class="p-3">Thuốc</th>
@@ -150,7 +150,6 @@
         let globalNames = [];
         let resultsData = [];
 
-        // Tự động gán mặc định thời gian hiện tại cho ô chọn thời gian sự kiện khi mở trang
         function setDefaultEventTime() {
             const now = new Date();
             const year = now.getFullYear();
@@ -167,7 +166,6 @@
             }
         }
 
-        // Tải dữ liệu đã lưu từ LocalStorage khi khởi động
         window.addEventListener('DOMContentLoaded', () => {
             fetchRepoTxtFiles();
             setDefaultEventTime();
@@ -285,7 +283,7 @@
             switchTab(2);
         }
 
-        // Tính toán dựa trên Ngày và Giờ tùy chỉnh (cho phép chọn quá khứ)
+        // Tính toán đầy đủ theo Ngày & Giờ nhập vào (Hỗ trợ quá khứ)
         function calculateAndAdd() {
             const name = document.getElementById('selectedName').value;
             const birthVal = document.getElementById('birthDate').value;
@@ -295,39 +293,41 @@
             const cure = document.getElementById('cureInput').value;
 
             if (!name || !birthVal || !eventDateVal || !eventTimeVal || !symptom || !cure) {
-                alert("Vui lòng điền đầy đủ tất cả các thông tin (bao gồm ngày và giờ sự kiện)!");
+                alert("Vui lòng điền đầy đủ tất cả các thông tin (bao gồm ngày và giờ nhập vào)!");
                 return;
             }
 
             const birthDateObj = new Date(birthVal);
-            const eventDateObj = new Date(eventDateVal); // Ngày sự kiện do người dùng tự chọn
+            const eventDateObj = new Date(eventDateVal); // Ngày nhập vào do người dùng chọn
 
-            // Cột 2: Lấy Ngày sự kiện trừ đi Ngày sinh
+            // Cột 2: Lấy Ngày nhập vào trừ đi Ngày sinh (chênh lệch ngày)
             const diffTime = eventDateObj - birthDateObj;
             const col2 = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            // Tách giờ và phút từ ô nhập giờ sự kiện
+            // Tách giờ và phút từ ô nhập giờ
             const [hoursStr, minutesStr] = eventTimeVal.split(':');
             const hours = parseInt(hoursStr, 10);
             const minutes = parseInt(minutesStr, 10);
 
-            // Cột 3: STT phút tính từ giờ sự kiện chọn
+            // Cột 3: STT phút của giờ phút nhập vào (Giờ * 60 + Phút)
             const col3 = hours * 60 + minutes;
 
-            if (col3 === 0 && hours === 0 && minutes === 0) {
-                // Vẫn cho phép nếu chọn đúng 00:00 nhưng cần lưu ý chia
+            if (col3 === 0) {
+                alert("STT phút nhập vào đang là 0 (00:00), không thể chia!");
+                return;
             }
 
-            const col4 = col3 !== 0 ? (col2 / col3).toFixed(2) : 0;
-            const col5 = col3 !== 0 ? Math.floor(col2 / col3) : 0;
-            const col6 = col3 !== 0 ? col2 % col3 : 0;
-            const col7 = col5 % 1000;
-            const col8 = col6 % 1000;
+            // Thực hiện các phép tính đầy đủ theo yêu cầu
+            const col4 = (col2 / col3).toFixed(2);       // Thương số
+            const col5 = Math.floor(col2 / col3);       // Phần nguyên (Cột 5)
+            const col6 = col2 % col3;                   // Phần dư (Cột 6)
+            const col7 = col5 % 1000;                   // Phần dư 1000 của Cột 5 (Cột 7)
+            const col8 = col6 % 1000;                   // Phần dư 1000 của Cột 6 (Cột 8)
 
             const timeFormatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
             const rowData = {
-                id: Date.now(), // Mã định danh duy nhất để xóa từng dòng nếu cần
+                id: Date.now(),
                 col1: name,
                 col2: col2,
                 col3: col3,
@@ -360,7 +360,7 @@
             }
 
             tbody.innerHTML = '';
-            resultsData.forEach((item, index) => {
+            resultsData.forEach((item) => {
                 let tr = document.createElement('tr');
                 tr.className = "hover:bg-slate-700/50 transition";
                 tr.innerHTML = `
@@ -406,14 +406,14 @@
             }
         }
 
-        // Xuất file .txt để đưa vào Python tính toán
+        // Xuất file .txt đúng chuẩn định dạng các cột để Python xử lý
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
                 return;
             }
 
-            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tngày sự kiện\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
+            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tngày nhập\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
             
             resultsData.forEach(item => {
                 fileContent += `${item.col1}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col4}\t${item.eventDate}\t${item.time}\t${item.col1}\t${item.symptom}\t${item.cure}\t${item.col3}\n`;
