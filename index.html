@@ -11,7 +11,7 @@
     <div class="max-w-4xl mx-auto">
         <header class="text-center mb-6">
             <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Tính toán chuẩn xác theo công thức đổi ngày ra giờ & cộng/trừ giờ sinh</p>
+            <p class="text-sm text-slate-400 mt-1">Tự động đọc dữ liệu từ dấu | & Chuẩn hóa giờ 24h</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
@@ -36,8 +36,8 @@
                 </div>
 
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Nội dung tên trong tệp (có thể chỉnh sửa trực tiếp nếu muốn):</label>
-                    <textarea id="namesInput" rows="8" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" placeholder="Danh sách tên sẽ tự động hiện ở đây khi bạn chọn tệp..."></textarea>
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Nội dung tên & thông tin trong tệp:</label>
+                    <textarea id="namesInput" rows="8" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-3 text-white focus:ring-2 focus:ring-cyan-500" placeholder="Danh sách sẽ tự động hiện ở đây..."></textarea>
                 </div>
 
                 <button onclick="saveAndApplyNames()" class="w-full bg-emerald-600 hover:bg-emerald-500 font-bold py-3 px-4 rounded-lg transition shadow">Xác Nhận & Sang Tab 2 Nhập Liệu</button>
@@ -62,33 +62,34 @@
                 <h2 class="text-lg font-semibold text-cyan-300">Nhập Thông Tin Khám & Bệnh Án</h2>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Chọn tên từ danh sách đã nạp -->
+                    <!-- Chọn tên (Tự động điền ngày/giờ sinh từ dấu |) -->
                     <div>
                         <label class="block text-sm font-medium mb-1 text-slate-300">Chọn Tên Người (Cột 1):</label>
-                        <select id="selectedName" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                        <select id="selectedName" onchange="onNameSelected()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                             <option value="">-- Chưa nạp danh sách ở Tab 1 --</option>
                         </select>
                     </div>
 
-                    <!-- Ngày tháng năm sinh & Giờ sinh -->
+                    <!-- Ngày tháng năm sinh & Giờ sinh (Tự động điền) -->
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh & Giờ Sinh:</label>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh & Giờ Sinh (Tự động từ |):</label>
                         <div class="flex gap-2">
-                            <input type="date" id="birthDate" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
-                            <input type="time" id="birthTime" value="00:00" class="w-32 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Giờ sinh">
+                            <input type="date" id="birthDate" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Ngày sinh">
+                            <!-- Dùng thẻ input text hỗ trợ nhập giờ trực tiếp chuẩn 24h hoặc chọn -->
+                            <input type="text" id="birthTime" placeholder="HH:mm (VD: 21:00)" class="w-36 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Giờ sinh (24h)">
                         </div>
                     </div>
                 </div>
 
-                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào -->
+                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào (Định dạng 24h chuẩn) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
                     <div>
                         <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Nhập Vào (Sự Kiện):</label>
                         <input type="date" id="eventDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-amber-300">Giờ & Phút Nhập Vào (HH:mm):</label>
-                        <input type="time" id="eventTime" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                        <label class="block text-sm font-medium mb-1 text-amber-300">Giờ & Phút Nhập Vào (Định dạng 24h, VD: 21:30):</label>
+                        <input type="text" id="eventTime" placeholder="HH:mm" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                 </div>
 
@@ -150,7 +151,7 @@
     </div>
 
     <script>
-        let globalNames = [];
+        let parsedRowsData = []; // Lưu trữ cấu trúc các dòng đã tách dấu |
         let resultsData = [];
 
         function setDefaultEventTime() {
@@ -166,9 +167,6 @@
             }
             if(!document.getElementById('eventTime').value) {
                 document.getElementById('eventTime').value = `${hours}:${minutes}`;
-            }
-            if(!document.getElementById('birthTime').value) {
-                document.getElementById('birthTime').value = "00:00";
             }
         }
 
@@ -268,30 +266,93 @@
         setInterval(updateClock, 1000);
         updateClock();
 
+        // Tự động phân tích các dòng có dấu | (VD: Tên | Ngày sinh | Giờ sinh...)
         function saveAndApplyNames() {
             const rawText = document.getElementById('namesInput').value;
-            globalNames = rawText.split(/\r?\n/).map(n => n.trim()).filter(n => n);
+            const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => l);
             
-            if (globalNames.length === 0) {
-                alert("Danh sách tên đang trống!");
+            if (lines.length === 0) {
+                alert("Danh sách đang trống!");
                 return;
             }
 
+            parsedRowsData = [];
             const selectEl = document.getElementById('selectedName');
             selectEl.innerHTML = '<option value="">-- Chọn tên người --</option>';
-            globalNames.forEach(name => {
+
+            lines.forEach((line, index) => {
+                let parts = line.split('|').map(p => p.trim());
+                let fullName = line; // Giữ nguyên chuỗi gốc hiển thị trong dropdown nếu muốn
+                let birthDate = "";
+                let birthHour = "00";
+
+                if (parts.length >= 3) {
+                    // Cấu trúc: Tên | Ngày/Tháng/Năm | Giờ sinh ...
+                    fullName = parts[0];
+                    let rawDate = parts[1]; // VD: 3/3/1971 hoặc 03/03/1971
+                    let rawHour = parts[2]; // VD: 21
+
+                    // Chuẩn hóa ngày sinh sang dạng yyyy-MM-dd cho thẻ input date
+                    let dateParts = rawDate.split('/');
+                    if (dateParts.length === 3) {
+                        let d = dateParts[0].padStart(2, '0');
+                        let m = dateParts[1].padStart(2, '0');
+                        let y = dateParts[2];
+                        birthDate = `${y}-${m}-${d}`;
+                    }
+
+                    // Chuẩn hóa giờ sinh
+                    birthHour = String(rawHour).padStart(2, '0') + ":00";
+                } else if (parts.length === 2) {
+                    fullName = parts[0];
+                    birthDate = parts[1];
+                }
+
+                parsedRowsData.push({
+                    id: index,
+                    displayName: line,
+                    nameOnly: fullName,
+                    birthDate: birthDate,
+                    birthTime: birthHour
+                });
+
                 let opt = document.createElement('option');
-                opt.value = name;
-                opt.textContent = name;
+                opt.value = index;
+                opt.textContent = line;
                 selectEl.appendChild(opt);
             });
-            alert(`Đã nạp thành công ${globalNames.length} tên. Chuyển sang Tab 2 để nhập liệu!`);
+
+            alert(`Đã nạp thành công ${parsedRowsData.length} dòng dữ liệu từ tệp!`);
             switchTab(2);
         }
 
-        // Tính toán chuẩn theo yêu cầu: Đổi ngày lệch ra giờ, cộng/trừ giờ sinh rồi chia cho STT phút
+        // Khi chọn tên, tự động điền ngày sinh và giờ sinh vào form
+        function onNameSelected() {
+            const selectedIdx = document.getElementById('selectedName').value;
+            if (selectedIdx === "") return;
+
+            const data = parsedRowsData[selectedIdx];
+            if (data) {
+                if (data.birthDate) {
+                    document.getElementById('birthDate').value = data.birthDate;
+                }
+                if (data.birthTime) {
+                    document.getElementById('birthTime').value = data.birthTime;
+                }
+            }
+        }
+
+        // Tính toán theo đúng công thức yêu cầu
         function calculateAndAdd() {
-            const name = document.getElementById('selectedName').value;
+            const selectedIdx = document.getElementById('selectedName').value;
+            if (selectedIdx === "") {
+                alert("Vui lòng chọn tên người ở Cột 1!");
+                return;
+            }
+
+            const rowInfo = parsedRowsData[selectedIdx];
+            const name = rowInfo.nameOnly;
+
             const birthVal = document.getElementById('birthDate').value;
             const birthTimeVal = document.getElementById('birthTime').value || "00:00";
             const eventDateVal = document.getElementById('eventDate').value;
@@ -299,7 +360,7 @@
             const symptom = document.getElementById('symptomInput').value;
             const cure = document.getElementById('cureInput').value;
 
-            if (!name || !birthVal || !eventDateVal || !eventTimeVal || !symptom || !cure) {
+            if (!birthVal || !eventDateVal || !eventTimeVal || !symptom || !cure) {
                 alert("Vui lòng điền đầy đủ tất cả các thông tin cần thiết!");
                 return;
             }
@@ -307,30 +368,26 @@
             const birthDateObj = new Date(birthVal);
             const eventDateObj = new Date(eventDateVal);
 
-            // 1. Tính số ngày chênh lệch giữa ngày sự kiện và ngày sinh
+            // 1. Số ngày chênh lệch giữa ngày sự kiện và ngày sinh
             const diffTime = eventDateObj - birthDateObj;
             const dayDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
             // 2. Đổi số ngày chênh lệch ra giờ (= số ngày * 24)
             let totalHours = dayDiff * 24;
 
-            // 3. Xử lý giờ sinh: Cộng nếu trước 24h đêm (tức giờ < 12 trưa hoặc tính theo quy ước), trừ nếu sau 24h đêm
-            // Ở đây dựa trên giờ sinh (HH:mm): nếu giờ sinh < 12 (trước 24h tính theo nửa đầu hoặc quy ước trước/sau 24h)
-            // Theo yêu cầu: "cộng với giờ sinh trước 24 giờ đêm và trừ đi sinh sau 24 giờ đêm"
-            const [bHoursStr, bMinutesStr] = birthTimeVal.split(':');
+            // 3. Xử lý giờ sinh: cộng với giờ sinh trước 24 giờ đêm và trừ đi sinh sau 24 giờ đêm
+            const [bHoursStr] = birthTimeVal.split(':');
             const birthHours = parseInt(bHoursStr, 10);
             
-            // Quy ước trước 24 giờ đêm (ví dụ trước 12:00 trưa hoặc giờ < 12), nếu người dùng nhập giờ sinh cụ thể:
-            if (birthHours < 12) {
-                totalHours += birthHours; // Cộng với giờ sinh trước 24 giờ đêm
+            if (birthHours < 24) {
+                totalHours += birthHours; // Cộng giờ sinh trước 24h
             } else {
-                totalHours -= birthHours; // Trừ đi nếu sau 24 giờ đêm
+                totalHours -= birthHours; // Trừ đi nếu sau 24h
             }
 
-            // Cột 2 sau khi đã cộng/trừ giờ
             const col2 = totalHours;
 
-            // 4. Lấy STT phút của giờ phút nhập vào sự kiện (Cột 3)
+            // 4. STT phút của giờ phút nhập vào sự kiện (Cột 3)
             const [eHoursStr, eMinutesStr] = eventTimeVal.split(':');
             const eventHours = parseInt(eHoursStr, 10);
             const eventMinutes = parseInt(eMinutesStr, 10);
@@ -341,12 +398,12 @@
                 return;
             }
 
-            // 5. Thực hiện các phép tính chia cho số thứ tự giờ phút vừa nhập
-            const col4 = (col2 / col3).toFixed(2);       // Thương số
-            const col5 = Math.floor(col2 / col3);       // Phần nguyên (Cột 5)
-            const col6 = col2 % col3;                   // Phần dư (Cột 6)
-            const col7 = col5 % 1000;                   // Phần dư 1000 của Cột 5 (Cột 7)
-            const col8 = col6 % 1000;                   // Phần dư 1000 của Cột 6 (Cột 8)
+            // 5. Phép tính chia
+            const col4 = (col2 / col3).toFixed(2);
+            const col5 = Math.floor(col2 / col3);
+            const col6 = col2 % col3;
+            const col7 = col5 % 1000;
+            const col8 = col6 % 1000;
 
             const timeFormatted = `${eventHours.toString().padStart(2, '0')}:${eventMinutes.toString().padStart(2, '0')}`;
 
@@ -431,7 +488,6 @@
             }
         }
 
-        // Xuất file .txt đúng chuẩn định dạng các cột để Python xử lý
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
