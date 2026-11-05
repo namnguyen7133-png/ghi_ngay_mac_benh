@@ -12,7 +12,7 @@
     <div class="max-w-4xl mx-auto">
         <header class="text-center mb-6">
             <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Đồng bộ giữa Điện thoại và Máy tính (Python)</p>
+            <p class="text-sm text-slate-400 mt-1">Đồng bộ tự động từ GitHub (Điện thoại & Máy tính)</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
@@ -26,19 +26,20 @@
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700">
                 <h2 class="text-lg font-semibold mb-3 text-cyan-300">1. Chọn hoặc Tải Danh Sách Tên (.txt)</h2>
                 
-                <!-- Chọn danh sách mẫu có sẵn -->
+                <!-- Chọn danh sách tự động từ GitHub -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Chọn danh sách mẫu từ GitHub/Thư mục:</label>
-                    <select id="githubListSelect" onchange="loadSelectedList()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
-                        <option value="">-- Chọn danh sách có sẵn --</option>
-                        <option value="danhsach_1.txt">Danh sách 1</option>
-                        <option value="danhsach_2.txt">Danh sách 2</option>
-                    </select>
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Chọn danh sách tự động từ GitHub:</label>
+                    <div class="flex gap-2">
+                        <select id="githubFileList" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                            <option value="">-- Đang quét danh sách file .txt từ GitHub... --</option>
+                        </select>
+                        <button onclick="loadAutoSelectedFile()" class="bg-cyan-600 hover:bg-cyan-500 px-4 py-2.5 rounded-lg font-bold transition">Tải Về</button>
+                    </div>
                 </div>
 
-                <!-- Tải file từ máy tính -->
+                <!-- Tải file từ máy tính/điện thoại -->
                 <div class="mb-4">
-                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc tải tệp `.txt` từ máy/điện thoại:</label>
+                    <label class="block text-sm font-medium mb-1 text-slate-300">Hoặc tải tệp `.txt` từ thiết bị:</label>
                     <input type="file" id="txtFileInput" accept=".txt" class="w-full text-sm text-slate-400 file:mr-4 file:py-2 file:px-4 file:rounded-lg file:border-0 file:text-sm file:font-semibold file:bg-cyan-600 file:text-white hover:file:bg-cyan-500 cursor-pointer">
                 </div>
 
@@ -146,6 +147,62 @@
         let globalNames = [];
         let resultsData = [];
 
+        // Tự động quét danh sách file .txt từ GitHub khi tải trang
+        async function fetchRepoTxtFiles() {
+            const repoOwner = "namnguyen7133-png";
+            const repoName = "ghi_ngay_mac_benh";
+            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
+
+            const selectEl = document.getElementById('githubFileList');
+            try {
+                const response = await fetch(apiUrl);
+                if (response.ok) {
+                    const files = await response.json();
+                    const txtFiles = files.filter(file => file.name.endsWith('.txt'));
+                    
+                    selectEl.innerHTML = '<option value="">-- Chọn file .txt trên GitHub --</option>';
+                    txtFiles.forEach(file => {
+                        let opt = document.createElement('option');
+                        opt.value = file.download_url;
+                        opt.textContent = file.name;
+                        selectEl.appendChild(opt);
+                    });
+                    if(txtFiles.length === 0) {
+                        selectEl.innerHTML = '<option value="">Không tìm thấy file .txt nào trên repo</option>';
+                    }
+                } else {
+                    selectEl.innerHTML = '<option value="">Không tải được danh sách file</option>';
+                }
+            } catch (err) {
+                selectEl.innerHTML = '<option value="">Lỗi kết nối GitHub API</option>';
+            }
+        }
+
+        window.addEventListener('DOMContentLoaded', () => {
+            fetchRepoTxtFiles();
+        });
+
+        // Tải nội dung file được chọn từ GitHub
+        async function loadAutoSelectedFile() {
+            const fileUrl = document.getElementById('githubFileList').value;
+            if (!fileUrl) {
+                alert("Vui lòng chọn một file từ danh sách!");
+                return;
+            }
+            try {
+                const res = await fetch(fileUrl);
+                if (res.ok) {
+                    const text = await res.text();
+                    document.getElementById('namesInput').value = text;
+                    saveAndApplyNames();
+                } else {
+                    alert("Không tải được nội dung file!");
+                }
+            } catch (err) {
+                alert("Lỗi: " + err);
+            }
+        }
+
         // Chuyển Tab
         function switchTab(tabNum) {
             if (tabNum === 1) {
@@ -174,14 +231,13 @@
             
             document.getElementById('currentDateDisplay').innerText = `${dayName}, Ngày ${dateStr} - Giờ: ${timeStr}`;
             
-            // STT phút từ 00:00
             const sttMin = hours * 60 + minutes;
             document.getElementById('currentSttMin').innerText = sttMin;
         }
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Đọc file txt tải lên máy
+        // Đọc file txt tải lên từ máy/điện thoại
         document.getElementById('txtFileInput').addEventListener('change', function(e) {
             const file = e.target.files[0];
             if (!file) return;
@@ -193,24 +249,6 @@
             };
             reader.readAsText(file);
         });
-
-        // Đọc danh sách mẫu từ GitHub
-        async function loadSelectedList() {
-            const filename = document.getElementById('githubListSelect').value;
-            if (!filename) return;
-            try {
-                const res = await fetch(filename);
-                if (res.ok) {
-                    const text = await res.text();
-                    document.getElementById('namesInput').value = text;
-                    saveAndApplyNames();
-                } else {
-                    alert("Không tìm thấy file mẫu này trên GitHub. Hãy đảm bảo bạn đã đẩy file lên.");
-                }
-            } catch (err) {
-                alert("Lỗi tải file: " + err);
-            }
-        }
 
         // Lưu và áp dụng danh sách vào ô chọn (Tab 2)
         function saveAndApplyNames() {
@@ -244,11 +282,9 @@
             const now = new Date();
             const birthDateObj = new Date(birthVal);
 
-            // Cột 2: Lấy ngày hiện tại trừ đi ngày tháng năm sinh (tính bằng số ngày chênh lệch)
             const diffTime = now - birthDateObj;
             const col2 = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            // Cột 3: STT phút hiện tại
             const hours = now.getHours();
             const minutes = now.getMinutes();
             const col3 = hours * 60 + minutes;
@@ -258,22 +294,12 @@
                 return;
             }
 
-            // Cột 4: Thương số (Cột 2 / Cột 3)
             const col4 = (col2 / col3).toFixed(2);
-
-            // Cột 5: Phần nguyên của phép tính
             const col5 = Math.floor(col2 / col3);
-
-            // Cột 6: Phần dư của phép tính
             const col6 = col2 % col3;
-
-            // Cột 7: Phần nguyên chia 1000 lấy phần dư
             const col7 = col5 % 1000;
-
-            // Cột 8: Phần dư chia 1000 lấy phần dư
             const col8 = col6 % 1000;
 
-            // Giờ phút định dạng HH:mm
             const timeFormatted = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}`;
 
             const rowData = {
@@ -337,7 +363,7 @@
             }
         }
 
-        // Xuất file .txt theo đúng định dạng Tab bạn yêu cầu để Python dễ đọc
+        // Xuất file .txt theo đúng định dạng Tab chuẩn
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
