@@ -8,10 +8,10 @@
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen p-4 sm:p-6">
 
-    <div class="max-w-4xl mx-auto">
+    <div class="max-w-6xl mx-auto">
         <header class="text-center mb-6">
-            <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án</h1>
-            <p class="text-sm text-slate-400 mt-1">Tự động đọc dữ liệu từ dấu | & Chuẩn hóa giờ 24h</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án (13 Cột Chuẩn)</h1>
+            <p class="text-sm text-slate-400 mt-1">Tự động đọc dữ liệu từ GitHub & Tính toán công thức theo thời gian</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
@@ -52,7 +52,7 @@
                     <span id="currentDateDisplay" class="text-cyan-300 font-medium">Đang tải thời gian...</span>
                 </div>
                 <div class="bg-slate-900 px-4 py-2 rounded-lg border border-slate-700">
-                    <span class="text-xs text-slate-400 block">STT Phút hiện tại:</span>
+                    <span class="text-xs text-slate-400 block">Cột 1 (STT Phút hiện tại):</span>
                     <span id="currentSttMin" class="text-xl font-bold text-emerald-400">0</span>
                 </div>
             </div>
@@ -63,40 +63,37 @@
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Chọn Tên Người (Cột 1):</label>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Cột 2 - Chọn Tên Người:</label>
                         <select id="selectedName" onchange="onNameSelected()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                             <option value="">-- Chưa nạp danh sách ở Tab 1 --</option>
                         </select>
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh & Giờ Sinh (Tự động từ |):</label>
-                        <div class="flex gap-2">
-                            <input type="date" id="birthDate" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Ngày sinh">
-                            <input type="text" id="birthTime" placeholder="HH:mm (VD: 21:00)" class="w-36 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Giờ sinh (24h)">
-                        </div>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh (Dùng tính Cột 11):</label>
+                        <input type="date" id="birthDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Nhập Vào (Sự Kiện):</label>
+                        <label class="block text-sm font-medium mb-1 text-amber-300">Cột 3 - Ngày Nhập Vào:</label>
                         <input type="date" id="eventDate" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-amber-300">Giờ & Phút Nhập Vào (Định dạng 24h, VD: 21:30):</label>
-                        <input type="text" id="eventTime" placeholder="HH:mm" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
+                        <label class="block text-sm font-medium mb-1 text-amber-300">Cột 4 - Giờ & Phút Nhập Vào (HH:mm):</label>
+                        <input type="text" id="eventTime" placeholder="HH:mm (VD: 10:57)" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Triệu Chứng Bệnh:</label>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Cột 9 - Triệu Chứng Bệnh:</label>
                         <input type="text" id="symptomInput" placeholder="Ví dụ: Hoa mắt, chóng mặt" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
 
                     <div>
-                        <label class="block text-sm font-medium mb-1 text-slate-300">Cách Chữa Bệnh / Thuốc:</label>
+                        <label class="block text-sm font-medium mb-1 text-slate-300">Cột 10 - Bài Thuốc / Xử Lý:</label>
                         <input type="text" id="cureInput" placeholder="Ví dụ: Trà gừng mật ong nóng" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
                     </div>
                 </div>
@@ -110,17 +107,11 @@
             <!-- Bảng kết quả -->
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
                 <div class="flex justify-between items-center flex-wrap gap-2">
-                    <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả & Gửi Lên Repo GitHub</h2>
+                    <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả Tính Toán</h2>
                     <div class="flex flex-wrap gap-2 items-center">
-                        <!-- Ô nhập tên file muốn lưu trực tiếp trên repo -->
-                        <input type="text" id="targetRepoFileName" placeholder="Tên file trên repo (VD: ket_qua.txt)" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
-                        
-                        <!-- Nút đẩy trực tiếp lên GitHub -->
-                        <button onclick="pushResultToGitHubRepo()" class="bg-purple-600 hover:bg-purple-500 text-sm font-bold py-2 px-3 rounded-lg transition text-white">🚀 Gửi Lên Trực Tiếp Repo</button>
-                        
-                        <!-- Vẫn giữ nút tải về máy tính cũ -->
-                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">📥 Tải Về Máy (.txt)</button>
-                        
+                        <input type="text" id="targetRepoFileName" placeholder="Tên file trên repo (.txt)" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        <button onclick="pushResultToGitHubRepo()" class="bg-purple-600 hover:bg-purple-500 text-sm font-bold py-2 px-3 rounded-lg transition text-white">🚀 Gửi Lên Repo</button>
+                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">📥 Tải Về máy (.txt)</button>
                         <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition">Xóa Hết</button>
                     </div>
                 </div>
@@ -130,22 +121,24 @@
                         <thead class="bg-slate-900 text-cyan-400 uppercase font-semibold">
                             <tr>
                                 <th class="p-3">Thao tác</th>
-                                <th class="p-3">C1 (Tên)</th>
-                                <th class="p-3">C2 (Số Giờ Đã Xử Lý)</th>
-                                <th class="p-3">C3 (STT Phút)</th>
-                                <th class="p-3">C4 (Thương số)</th>
-                                <th class="p-3">C5 (Nguyên)</th>
-                                <th class="p-3">C6 (Dư)</th>
+                                <th class="p-3">C1 (STT Phút)</th>
+                                <th class="p-3">C2 (Tên)</th>
+                                <th class="p-3">C3 (Ngày nhập)</th>
+                                <th class="p-3">C4 (Giờ phút)</th>
+                                <th class="p-3">C5 (Nguyên C11/C1)</th>
+                                <th class="p-3">C6 (Dư C11/C1)</th>
                                 <th class="p-3">C7 (Dư 1000 C5)</th>
                                 <th class="p-3">C8 (Dư 1000 C6)</th>
-                                <th class="p-3">Ngày Nhập</th>
-                                <th class="p-3">Giờ:Phút</th>
-                                <th class="p-3">Bệnh</th>
-                                <th class="p-3">Thuốc</th>
+                                <th class="p-3">C9 (Bệnh)</th>
+                                <th class="p-3">C10 (Thuốc)</th>
+                                <th class="p-3">C11 (Số ngày)</th>
+                                <th class="p-3">C11* (Số tuần)</th>
+                                <th class="p-3">C12 (Số tháng)</th>
+                                <th class="p-3">C13 (Số quý)</th>
                             </tr>
                         </thead>
                         <tbody id="resultTableBody" class="divide-y divide-slate-700">
-                            <tr><td colspan="13" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>
+                            <tr><td colspan="15" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -230,7 +223,7 @@
                 if (res.ok) {
                     const text = await res.text();
                     document.getElementById('namesInput').value = text;
-                    alert("Đã tải thành công nội dung tệp từ GitHub vào ứng dụng!");
+                    alert("Đã tải thành công nội dung tệp từ GitHub!");
                 } else {
                     alert("Không thể tải nội dung tệp!");
                 }
@@ -287,12 +280,10 @@
                 let parts = line.split('|').map(p => p.trim());
                 let fullName = line;
                 let birthDate = "";
-                let birthHour = "00:00";
 
-                if (parts.length >= 3) {
+                if (parts.length >= 2) {
                     fullName = parts[0];
                     let rawDate = parts[1];
-                    let rawHour = parts[2];
 
                     let dateParts = rawDate.split('/');
                     if (dateParts.length === 3) {
@@ -300,19 +291,16 @@
                         let m = dateParts[1].padStart(2, '0');
                         let y = dateParts[2];
                         birthDate = `${y}-${m}-${d}`;
+                    } else if (rawDate.includes('-')) {
+                        birthDate = rawDate;
                     }
-                    birthHour = String(rawHour).padStart(2, '0') + ":00";
-                } else if (parts.length === 2) {
-                    fullName = parts[0];
-                    birthDate = parts[1];
                 }
 
                 parsedRowsData.push({
                     id: index,
                     displayName: line,
                     nameOnly: fullName,
-                    birthDate: birthDate,
-                    birthTime: birthHour
+                    birthDate: birthDate
                 });
 
                 let opt = document.createElement('option');
@@ -321,7 +309,7 @@
                 selectEl.appendChild(opt);
             });
 
-            alert(`Đã nạp thành công ${parsedRowsData.length} dòng dữ liệu từ tệp!`);
+            alert(`Đã nạp thành công ${parsedRowsData.length} người từ danh sách!`);
             switchTab(2);
         }
 
@@ -330,16 +318,15 @@
             if (selectedIdx === "") return;
 
             const data = parsedRowsData[selectedIdx];
-            if (data) {
-                if (data.birthDate) document.getElementById('birthDate').value = data.birthDate;
-                if (data.birthTime) document.getElementById('birthTime').value = data.birthTime;
+            if (data && data.birthDate) {
+                document.getElementById('birthDate').value = data.birthDate;
             }
         }
 
         function calculateAndAdd() {
             const selectedIdx = document.getElementById('selectedName').value;
             if (selectedIdx === "") {
-                alert("Vui lòng chọn tên người ở Cột 1!");
+                alert("Vui lòng chọn tên người ở Cột 2!");
                 return;
             }
 
@@ -347,68 +334,69 @@
             const name = rowInfo.nameOnly;
 
             const birthVal = document.getElementById('birthDate').value;
-            const birthTimeVal = document.getElementById('birthTime').value || "00:00";
             const eventDateVal = document.getElementById('eventDate').value;
             const eventTimeVal = document.getElementById('eventTime').value;
             const symptom = document.getElementById('symptomInput').value;
             const cure = document.getElementById('cureInput').value;
 
             if (!birthVal || !eventDateVal || !eventTimeVal || !symptom || !cure) {
-                alert("Vui lòng điền đầy đủ tất cả các thông tin cần thiết!");
+                alert("Vui lòng điền đầy đủ thông tin!");
                 return;
             }
 
+            // TÍNH CỘT 1 (STT Phút từ giờ phút nhập vào)
+            const timeParts = eventTimeVal.split(':');
+            if (timeParts.length < 2) {
+                alert("Giờ phút nhập vào không đúng định dạng HH:mm");
+                return;
+            }
+            const eHours = parseInt(timeParts[0], 10);
+            const eMinutes = parseInt(timeParts[1], 10);
+            const col1 = eHours * 60 + eMinutes;
+
+            if (col1 === 0) {
+                alert("STT phút nhập vào đang là 0 (00:00), không thể thực hiện phép chia!");
+                return;
+            }
+
+            // TÍNH CỘT 11 (Số ngày = Ngày nhập - Ngày sinh)
             const birthDateObj = new Date(birthVal);
             const eventDateObj = new Date(eventDateVal);
-
             const diffTime = eventDateObj - birthDateObj;
-            const dayDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
+            const col11 = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            let totalHours = dayDiff * 24;
-
-            const [bHoursStr] = birthTimeVal.split(':');
-            const birthHours = parseInt(bHoursStr, 10);
-            
-            if (birthHours < 24) {
-                totalHours += birthHours;
-            } else {
-                totalHours -= birthHours;
-            }
-
-            const col2 = totalHours;
-
-            const [eHoursStr, eMinutesStr] = eventTimeVal.split(':');
-            const eventHours = parseInt(eHoursStr, 10);
-            const eventMinutes = parseInt(eMinutesStr, 10);
-            const col3 = eventHours * 60 + eventMinutes;
-
-            if (col3 === 0) {
-                alert("STT phút nhập vào đang là 0 (00:00), không thể chia!");
+            if (col11 < 0) {
+                alert("Ngày nhập không được nhỏ hơn ngày sinh!");
                 return;
             }
 
-            const col4 = (col2 / col3).toFixed(2);
-            const col5 = Math.floor(col2 / col3);
-            const col6 = col2 % col3;
-            const col7 = col5 % 1000;
-            const col8 = col6 % 1000;
+            // TÍNH CÁC CỘT CÒN LẠI
+            const col5 = Math.floor(col11 / col1);      // Phần nguyên C11 / C1
+            const col6 = col11 % col1;                 // Phần dư C11 / C1
+            const col7 = col5 % 1000;                  // Cột 5 chia 1000 lấy dư
+            const col8 = col6 % 1000;                  // Cột 6 chia 1000 lấy dư
+            const col11_week = Math.floor(col11 / 7);  // Cột 11 chia 7 lấy phần nguyên
+            const col12 = Math.floor(col11 / 30);      // Cột 11 chia 30 lấy phần nguyên
+            const col13 = Math.floor(col11 / 90);      // Cột 11 chia 90 lấy phần nguyên
 
-            const timeFormatted = `${eventHours.toString().padStart(2, '0')}:${eventMinutes.toString().padStart(2, '0')}`;
+            const timeFormatted = `${eHours.toString().padStart(2, '0')}:${eMinutes.toString().padStart(2, '0')}`;
 
             const rowData = {
                 id: Date.now(),
-                col1: name,
-                col2: col2,
-                col3: col3,
-                col4: col4,
+                col1: col1,
+                col2: name,
+                col3: eventDateVal,
+                col4: timeFormatted,
                 col5: col5,
                 col6: col6,
                 col7: col7,
                 col8: col8,
-                eventDate: eventDateVal,
-                time: timeFormatted,
-                symptom: symptom,
-                cure: cure
+                col9: symptom,
+                col10: cure,
+                col11: col11,
+                col11_week: col11_week,
+                col12: col12,
+                col13: col13
             };
 
             resultsData.push(rowData);
@@ -424,7 +412,7 @@
         function renderTable() {
             const tbody = document.getElementById('resultTableBody');
             if (resultsData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="13" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="15" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>`;
                 return;
             }
 
@@ -436,18 +424,20 @@
                     <td class="p-3">
                         <button onclick="deleteRow(${item.id})" class="text-rose-400 hover:text-rose-200 font-bold px-2 py-1 bg-rose-900/40 rounded">Xóa</button>
                     </td>
-                    <td class="p-3 font-semibold text-white">${item.col1}</td>
-                    <td class="p-3">${item.col2}</td>
+                    <td class="p-3 font-bold text-emerald-400">${item.col1}</td>
+                    <td class="p-3 font-semibold text-white">${item.col2}</td>
                     <td class="p-3">${item.col3}</td>
                     <td class="p-3">${item.col4}</td>
                     <td class="p-3 text-cyan-300 font-bold">${item.col5}</td>
                     <td class="p-3 text-amber-300 font-bold">${item.col6}</td>
                     <td class="p-3 text-purple-300">${item.col7}</td>
                     <td class="p-3 text-pink-300">${item.col8}</td>
-                    <td class="p-3">${item.eventDate}</td>
-                    <td class="p-3">${item.time}</td>
-                    <td class="p-3">${item.symptom}</td>
-                    <td class="p-3">${item.cure}</td>
+                    <td class="p-3">${item.col9}</td>
+                    <td class="p-3">${item.col10}</td>
+                    <td class="p-3 font-bold text-blue-300">${item.col11}</td>
+                    <td class="p-3">${item.col11_week}</td>
+                    <td class="p-3">${item.col12}</td>
+                    <td class="p-3">${item.col13}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -462,7 +452,6 @@
         function clearForm() {
             document.getElementById('selectedName').value = "";
             document.getElementById('birthDate').value = "";
-            document.getElementById('birthTime').value = "00:00";
             document.getElementById('symptomInput').value = "";
             document.getElementById('cureInput').value = "";
             setDefaultEventTime();
@@ -476,16 +465,15 @@
             }
         }
 
-        // Tạo nội dung file chuẩn
+        // Tạo nội dung file chuẩn theo đúng yêu cầu các cột
         function buildFileContent() {
-            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tngày nhập\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
+            let fileContent = "cột 1\ttên\tngày nhập\tgiờ phút\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\ttriệu chứng bệnh\tbài thuốc xử lý\tsố ngày\tsố tuần\tsố tháng\tsố quý\n";
             resultsData.forEach(item => {
-                fileContent += `${item.col1}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col4}\t${item.eventDate}\t${item.time}\t${item.col1}\t${item.symptom}\t${item.cure}\t${item.col3}\n`;
+                fileContent += `${item.col1}\t${item.col2}\t${item.col3}\t${item.col4}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col9}\t${item.col10}\t${item.col11}\t${item.col11_week}\t${item.col12}\t${item.col13}\n`;
             });
             return fileContent;
         }
 
-        // Tải tệp kết quả về máy tính
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
@@ -503,7 +491,6 @@
             URL.revokeObjectURL(url);
         }
 
-        // Đẩy nội dung trực tiếp lên Repo GitHub thông qua GitHub API
         async function pushResultToGitHubRepo() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu kết quả để gửi lên repo!");
@@ -518,18 +505,14 @@
                 fileName += '.txt';
             }
 
-            // Yêu cầu nhập GitHub Personal Access Token (PAT) để cấp quyền ghi vào repo
-            const token = prompt("Nhập GitHub Personal Access Token (PAT) của anh để cấp quyền ghi tệp lên repo:");
+            const token = prompt("Nhập GitHub Personal Access Token (PAT) để cấp quyền ghi:");
             if (!token) return;
 
             const fileContent = buildFileContent();
-            // Mã hóa nội dung sang Base64 chuẩn UTF-8 để GitHub API nhận diện
             const base64Content = btoa(unescape(encodeURIComponent(fileContent)));
-            
             const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${fileName}`;
 
             try {
-                // Kiểm tra xem file đã tồn tại trên repo chưa để lấy SHA (GitHub yêu cầu SHA nếu cập nhật file cũ)
                 let sha = null;
                 const checkRes = await fetch(apiUrl);
                 if (checkRes.ok) {
@@ -537,14 +520,11 @@
                     sha = fileData.sha;
                 }
 
-                // Gửi request PUT lên GitHub API
                 const bodyData = {
-                    message: `Cập nhật kết quả bệnh án tự động từ web - ${new Date().toLocaleString()}`,
+                    message: `Cập nhật kết quả bệnh án 13 cột tự động - ${new Date().toLocaleString()}`,
                     content: base64Content
                 };
-                if (sha) {
-                    bodyData.sha = sha; // Bắt buộc phải có sha nếu ghi đè file cũ
-                }
+                if (sha) bodyData.sha = sha;
 
                 const putRes = await fetch(apiUrl, {
                     method: 'PUT',
@@ -556,14 +536,14 @@
                 });
 
                 if (putRes.ok) {
-                    alert(`Đã gửi và cập nhật tệp "${fileName}" lên repo GitHub thành công!`);
-                    fetchRepoTxtFiles(); // Cập nhật lại danh sách file ở Tab 1
+                    alert(`Đã gửi tệp "${fileName}" lên repo GitHub thành công!`);
+                    fetchRepoTxtFiles();
                 } else {
                     const errJson = await putRes.json();
-                    alert("Lỗi khi gửi lên GitHub: " + (errJson.message || putRes.statusText));
+                    alert("Lỗi GitHub: " + (errJson.message || putRes.statusText));
                 }
             } catch (err) {
-                alert("Lỗi kết nối khi đẩy dữ liệu lên GitHub: " + err);
+                alert("Lỗi kết nối GitHub API: " + err);
             }
         }
     </script>
