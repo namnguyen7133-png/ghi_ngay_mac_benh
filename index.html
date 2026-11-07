@@ -3,21 +3,21 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Hệ Thống Tính Toán & Quản Lý Bệnh Án (Chuẩn 16 Cột)</title>
+    <title>Hệ Thống Tính Toán & Quản Lý Bệnh Án (Chuẩn 18 Cột)</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
 <body class="bg-slate-900 text-slate-100 min-h-screen p-4 sm:p-6">
 
     <div class="max-w-full mx-auto">
         <header class="text-center mb-6">
-            <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án (Chuẩn 16 Cột)</h1>
-            <p class="text-sm text-slate-400 mt-1">Đọc dữ liệu từ GitHub & Tính toán đầy đủ 16 cột chuẩn xác</p>
+            <h1 class="text-2xl sm:text-3xl font-bold text-cyan-400">Hệ Thống Tính Toán Chỉ Số & Bệnh Án (Chuẩn 18 Cột)</h1>
+            <p class="text-sm text-slate-400 mt-1">Đọc dữ liệu từ GitHub & Tính toán đầy đủ 18 cột chuẩn xác</p>
         </header>
 
         <!-- Thanh chuyển Tabs -->
         <div class="flex border-b border-slate-700 mb-6 max-w-5xl mx-auto">
             <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Chọn Danh Sách Tên (GitHub)</button>
-            <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Tab 2: Nhập Liệu & Bảng 16 Cột</button>
+            <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Tab 2: Nhập Liệu & Bảng 18 Cột</button>
         </div>
 
         <!-- ================= TAB 1 ================= -->
@@ -104,12 +104,12 @@
                 </div>
             </div>
 
-            <!-- Bảng kết quả 16 cột -->
+            <!-- Bảng kết quả 18 cột -->
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
                 <div class="flex justify-between items-center flex-wrap gap-2">
                     <h2 class="text-lg font-semibold text-cyan-300" id="totalRecordsCount">Bảng Kết Quả (0 dòng dữ liệu)</h2>
                     <div class="flex flex-wrap gap-2 items-center">
-                        <input type="text" id="targetRepoFileName" placeholder="Tên file trên repo (.txt)" value="ket_qua_16_cot.txt" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        <input type="text" id="targetRepoFileName" placeholder="Tên file trên repo (.txt)" value="ket_qua_18_cot.txt" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
                         <button onclick="pushResultToGitHubRepo()" class="bg-purple-600 hover:bg-purple-500 text-sm font-bold py-2 px-3 rounded-lg transition text-white">🚀 Gửi Lên Repo</button>
                         <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">📥 Tải Về Máy (.txt)</button>
                         <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition text-sm">Xóa Hết</button>
@@ -138,10 +138,11 @@
                                 <th class="p-3">Cột 14 (Số tháng)</th>
                                 <th class="p-3 text-indigo-300">Cột 15 (Dư 1000 C14)</th>
                                 <th class="p-3">Cột 16 (Số quý)</th>
+                                <th class="p-3 text-teal-300">Cột 17 (Dư 1000 Cột Quý)</th>
                             </tr>
                         </thead>
                         <tbody id="resultTableBody" class="divide-y divide-slate-700">
-                            <tr><td colspan="18" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>
+                            <tr><td colspan="19" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>
                         </tbody>
                     </table>
                 </div>
@@ -177,7 +178,7 @@
             fetchRepoTxtFiles();
             setDefaultEventTime();
 
-            const savedData = localStorage.getItem('benh_an_saved_16_cot_data');
+            const savedData = localStorage.getItem('benh_an_saved_18_cot_data');
             if (savedData) {
                 try {
                     resultsData = JSON.parse(savedData);
@@ -375,11 +376,12 @@
             const col6 = col11 % col1;                         
             const col7 = col5 % 1000;                          
             const col8 = col6 % 1000;                          
-            const col12 = Math.floor(col11 / 7);               // Cột 12: Số tuần
-            const col13 = col12 % 1000;                        // Cột 13: Số tuần % 1000 (Dư)
-            const col14 = Math.floor(col11 / 30);              // Cột 14: Số tháng
-            const col15 = col14 % 1000;                        // Cột 15: Số tháng % 1000 (Dư)
-            const col16 = Math.floor(col11 / 90);              // Cột 16: Số quý
+            const col12 = Math.floor(col11 / 7);                // Cột 12: Số tuần
+            const col13 = col12 % 1000;                         // Cột 13: Số tuần % 1000 (Dư)
+            const col14 = Math.floor(col11 / 30);               // Cột 14: Số tháng
+            const col15 = col14 % 1000;                         // Cột 15: Số tháng % 1000 (Dư)
+            const col16 = Math.floor(col11 / 90);               // Cột 16: Số quý
+            const col17 = col16 % 1000;                         // Cột 17: Dư 1000 của Cột Quý
 
             const timeFormatted = `${eHours.toString().padStart(2, '0')}:${eMinutes.toString().padStart(2, '0')}`;
             
@@ -403,7 +405,8 @@
                 col13: col13,
                 col14: col14,
                 col15: col15,
-                col16: col16
+                col16: col16,
+                col17: col17
             };
 
             resultsData.push(rowData);
@@ -413,7 +416,7 @@
         }
 
         function saveToLocalStorage() {
-            localStorage.setItem('benh_an_saved_16_cot_data', JSON.stringify(resultsData));
+            localStorage.setItem('benh_an_saved_18_cot_data', JSON.stringify(resultsData));
         }
 
         function renderTable() {
@@ -421,7 +424,7 @@
             document.getElementById('totalRecordsCount').innerText = `Bảng Kết Quả (${resultsData.length} dòng dữ liệu)`;
 
             if (resultsData.length === 0) {
-                tbody.innerHTML = `<tr><td colspan="18" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>`;
+                tbody.innerHTML = `<tr><td colspan="19" class="p-4 text-center text-slate-500">Chưa có dữ liệu nào được lưu.</td></tr>`;
                 return;
             }
 
@@ -450,6 +453,7 @@
                     <td class="p-3">${item.col14}</td>
                     <td class="p-3 text-indigo-300 font-bold">${item.col15}</td>
                     <td class="p-3">${item.col16}</td>
+                    <td class="p-3 text-teal-300 font-bold">${item.col17}</td>
                 `;
                 tbody.appendChild(tr);
             });
@@ -472,15 +476,15 @@
         function clearResults() {
             if (confirm("Bạn có chắc chắn muốn xóa toàn bộ dữ liệu đã lưu không?")) {
                 resultsData = [];
-                localStorage.removeItem('benh_an_saved_16_cot_data');
+                localStorage.removeItem('benh_an_saved_18_cot_data');
                 renderTable();
             }
         }
 
         function buildFileContent() {
-            let fileContent = "Cột 0\tCột 1\tCột 2\tCột 3\tCột 4\tCột 5\tCột 6\tCột 7\tCột 8\tCột 9\tCột 10\tCột 11\tCột 12\tCột 13\tCột 14\tCột 15\tCột 16\n";
+            let fileContent = "Cột 0\tCột 1\tCột 2\tCột 3\tCột 4\tCột 5\tCột 6\tCột 7\tCột 8\tCột 9\tCột 10\tCột 11\tCột 12\tCột 13\tCột 14\tCột 15\tCột 16\tCột 17\n";
             resultsData.forEach((item, index) => {
-                fileContent += `${index + 1}\t${item.col1}\t${item.col2}\t${item.col3}\t${item.col4}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col9}\t${item.col10}\t${item.col11}\t${item.col12}\t${item.col13}\t${item.col14}\t${item.col15}\t${item.col16}\n`;
+                fileContent += `${index + 1}\t${item.col1}\t${item.col2}\t${item.col3}\t${item.col4}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col9}\t${item.col10}\t${item.col11}\t${item.col12}\t${item.col13}\t${item.col14}\t${item.col15}\t${item.col16}\t${item.col17}\n`;
             });
             return fileContent;
         }
@@ -495,7 +499,7 @@
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
             a.href = url;
-            a.download = `ket_qua_16_cot_${new Date().toISOString().slice(0,10)}.txt`;
+            a.download = `ket_qua_18_cot_${new Date().toISOString().slice(0,10)}.txt`;
             document.body.appendChild(a);
             a.click();
             document.body.removeChild(a);
@@ -508,7 +512,7 @@
                 return;
             }
 
-            let fileName = document.getElementById('targetRepoFileName').value.trim() || "ket_qua_16_cot.txt";
+            let fileName = document.getElementById('targetRepoFileName').value.trim() || "ket_qua_18_cot.txt";
             if (!fileName.endsWith('.txt')) {
                 fileName += '.txt';
             }
@@ -529,7 +533,7 @@
                 }
 
                 const bodyData = {
-                    message: `Cập nhật kết quả bệnh án 16 cột - ${new Date().toLocaleString()}`,
+                    message: `Cập nhật kết quả bệnh án 18 cột - ${new Date().toLocaleString()}`,
                     content: base64Content
                 };
                 if (sha) bodyData.sha = sha;
