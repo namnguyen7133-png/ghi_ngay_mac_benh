@@ -1,6 +1,272 @@
-
-cột 1	phần nguyên cột 5	phần dư cột 6	phần dư 1000 cột 5	phần dư 1000 cột 6	thuong so	ngày nhập	giờ phút	tên	bệnh	thuốc	stt
-NGUYỄN MINH NAM	651	462	651	462	651.62	2026-11-04	12:29	NGUYỄN MINH NAM	Đau đầu, khó chịu	Nghe nhạc _Càfe	749
-NGUYỄN MINH NAM	864	501	864	501	864.89	2026-06-02	09:20	NGUYỄN MINH NAM	Buồn ngủ	Cà fe_tập thể dục	560
-NGUYỄN KHẮC NĂNG	798	197	798	197	798.22	2026-10-31	15:05	NGUYỄN KHẮC NĂNG	Ngã quỵ chóng mặt	cấp cứu truyền nước	905
-NGUYỄN MINH NAM	793	342	793	342	793.56	2026-11-03	10:15	NGUYỄN MINH NAM	Khớp gối phải	Trà gừng	615
+Cột 0	Cột 1	Cột 2	Cột 3	Cột 4	Cột 5	Cột 6	Cột 7	Cột 8	Cột 9	Cột 10	Cột 11	Cột 12	Cột 13	Cột 14	Cột 15	Cột 16
+1	330	NAM	22/03/2025	06:49	61	39	61	39	Hoa mắt, chóng mặt Trà gừng mật ong nóng 409	Điều chỉnh sinh hoạt	20169	2881	881	672	672	224
+2	336	NAM	27/06/2025	13:28	60	106	60	106	Dương bất thường Nước lá lốt	Ngâm chân 808	20266	2895	895	675	675	225
+3	610	NAM	28/06/2025	16:35	33	137	33	137	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 995	20267	2895	895	675	675	225
+4	10	NAM	28/06/2025	22:49	2026	7	26	7	Giải trí hoa hậu Điều chỉnh sinh hoạt 1369	Điều chỉnh sinh hoạt	20267	2895	895	675	675	225
+5	1140	NAM	23/06/2025	23:45	17	882	17	882	NHANH NHU CHOP giải trí Điều chỉnh sinh hoạt 1425	Điều chỉnh sinh hoạt	20262	2894	894	675	675	225
+6	1215	KA	28/06/2025	23:45	16	827	16	827	Ngày rụng trứng Ăn thực phẩm giàu kẽm	Uống đủ nước / Tránh đồ lạnh 1425	20267	2895	895	675	675	225
+7	360	BA	13/03/1971	09:00	1	76	1	76	HA Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	436	62	62	14	14	4
+8	72	NAM	01/07/2025	12:36	281	38	281	38	khớp đau Điều chỉnh sinh hoạt 756	Điều chỉnh sinh hoạt	20270	2895	895	675	675	225
+9	398	NAM	01/07/2025	13:58	50	370	50	370	Hoa mắt, chóng mặt Trà gừng mật ong nóng 838	Điều chỉnh sinh hoạt	20270	2895	895	675	675	225
+10	720	NAM	02/07/2025	14:12	28	111	28	111	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 852	20271	2895	895	675	675	225
+11	587	NAM	03/07/2025	11:43	34	314	34	314	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 703	20272	2896	896	675	675	225
+12	360	NAM	05/07/2025	09:51	56	114	56	114	Hoa mắt, chóng mặt Trà gừng mật ong nóng 591	Điều chỉnh sinh hoạt	20274	2896	896	675	675	225
+13	485	NAM	21/05/2025	08:25	41	344	41	344	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 505	20229	2889	889	674	674	224
+14	370	NAM	05/07/2025	22:55	54	294	54	294	Hoa mắt, chóng mặt Trà gừng mật ong nóng 1375	Điều chỉnh sinh hoạt	20274	2896	896	675	675	225
+15	185	NAM	06/07/2025	08:55	109	110	109	110	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 535	20275	2896	896	675	675	225
+16	529	NAM	06/07/2025	11:53	38	173	38	173	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 713	20275	2896	896	675	675	225
+17	644	NAM	06/07/2025	16:52	31	311	31	311	Hoa mắt, chóng mặt Trà gừng mật ong nóng 1012	Điều chỉnh sinh hoạt	20275	2896	896	675	675	225
+18	440	NAM	01/06/2025	08:10	46	0	46	0	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 490	20240	2891	891	674	674	224
+19	60	NAM	14/06/2025	08:30	337	33	337	33	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 510	20253	2893	893	675	675	225
+20	90	KA	06/07/2025	06:45	225	25	225	25	bắt đầu Nước gừng đường đen ấm	Tránh đồ lạnh 405	20275	2896	896	675	675	225
+21	395	KA	11/06/2025	12:25	51	105	51	105	hết Canh gà hầm táo đỏ	Bổ sung sắt (thịt bò, gan) 745	20250	2892	892	675	675	225
+22	1140	NAM	26/04/2025	23:30	17	824	17	824	THI NGUOI MAU Điều chỉnh sinh hoạt 1410	Điều chỉnh sinh hoạt	20204	2886	886	673	673	224
+23	360	NAM	02/05/2025	08:30	56	50	56	50	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 510	20210	2887	887	673	673	224
+24	315	NAM	07/07/2025	22:15	64	116	64	116	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20276	2896	896	675	675	225
+25	480	NAM	07/07/2025	11:45	42	116	42	116	Tê chân tay Rượu gừng xoa bóp 705	Điều chỉnh sinh hoạt	20276	2896	896	675	675	225
+26	1008	NAM	07/07/2025	19:38	20	116	20	116	Tê chân tay Rượu gừng xoa bóp 1178	Điều chỉnh sinh hoạt	20276	2896	896	675	675	225
+27	120	NAM	08/07/2025	11:30	168	117	168	117	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 690	Điều chỉnh sinh hoạt	20277	2896	896	675	675	225
+28	390	NAM	04/05/2025	06:30	51	322	51	322	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 390	20212	2887	887	673	673	224
+29	270	NAM	03/05/2025	08:30	74	231	74	231	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 510	20211	2887	887	673	673	224
+30	180	NAM	05/05/2025	07:30	112	53	112	53	Tê chân tay Rượu gừng xoa bóp 450	Điều chỉnh sinh hoạt	20213	2887	887	673	673	224
+31	90	NAM	09/05/2025	07:30	224	57	224	57	Tê chân tay Rượu gừng xoa bóp 450	Điều chỉnh sinh hoạt	20217	2888	888	673	673	224
+32	210	NAM	12/05/2025	06:30	96	60	96	60	Buồn nôn, lạnh người Ngậm gừng tươi	Nước chanh gừng ấm 390	20220	2888	888	674	674	224
+33	90	NAM	13/05/2025	06:30	224	61	224	61	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 390	Điều chỉnh sinh hoạt	20221	2888	888	674	674	224
+34	225	NAM	08/07/2025	10:03	90	27	90	27	may bay truc thang Điều chỉnh sinh hoạt 603	Điều chỉnh sinh hoạt	20277	2896	896	675	675	225
+35	480	NAM	08/07/2025	08:00	42	117	42	117	Hop Ubnd Điều chỉnh sinh hoạt 480	Điều chỉnh sinh hoạt	20277	2896	896	675	675	225
+36	270	NAM	16/02/2024	07:30	73	59	73	59	Viêm họng cấp Nước chanh sả gừng ấm, Củ cải, Lê 450	Điều chỉnh sinh hoạt	19769	2824	824	658	658	219
+37	480	PHO	05/05/2025	08:00	42	53	42	53	Hop QH BAT DAU Điều chỉnh sinh hoạt 480	Điều chỉnh sinh hoạt	20213	2887	887	673	673	224
+38	480	PHO	11/06/2025	08:00	42	90	42	90	Hop QH BAT DAU Điều chỉnh sinh hoạt 480	Điều chỉnh sinh hoạt	20250	2892	892	675	675	225
+39	60	PHO	28/05/2025	17:00	337	16	337	16	Hop QH be mac Điều chỉnh sinh hoạt 1020	Điều chỉnh sinh hoạt	20236	2890	890	674	674	224
+40	840	PHO	28/06/2025	17:00	24	107	24	107	Hop QH be mac Điều chỉnh sinh hoạt 1020	Điều chỉnh sinh hoạt	20267	2895	895	675	675	225
+41	255	NAM	09/07/2025	06:15	79	133	79	133	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 375	20278	2896	896	675	675	225
+42	101	NAM	09/07/2025	06:37	200	78	200	78	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 397	20278	2896	896	675	675	225
+43	15	KA	14/09/2013	00:25	1064	2	64	2	đầu kỳ Điều chỉnh sinh hoạt 25	Điều chỉnh sinh hoạt	15962	2280	280	532	532	177
+44	360	NA	29/04/2026	09:00	57	52	57	52	AN HOI Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+45	360	NH	29/04/2026	09:00	57	52	57	52	AN HOI Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+46	25	KA	28/09/2013	00:25	639	1	639	1	hết kỳ Canh gà hầm táo đỏ	Bổ sung sắt (thịt bò, gan) 25	15976	2282	282	532	532	177
+47	360	NAM	09/07/2025	12:45	56	118	56	118	Khớp đầu gối,Xoa bóp dầu nóng	Tập co duỗi nhẹ / Bổ sung Omega-3 Xoa bóp dầu nóng / Tập co duỗi nhẹ / Bổ sung Omega-3 765	20278	2896	896	675	675	225
+48	120	NAM	10/07/2025	07:15	168	119	168	119	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 435	20279	2897	897	675	675	225
+49	450	NAM	09/07/2025	15:15	45	28	45	28	Mỏi cổ vai gáy Chườm thảo dược	Tập bài tập cổ / Day huyệt Phong trì 915	20278	2896	896	675	675	225
+50	1020	NAM	01/07/2025	22:15	19	890	19	890	khớp đầu gối Xoa bóp dầu nóng	Tập co duỗi nhẹ / Bổ sung Omega-3 1335	20270	2895	895	675	675	225
+51	380	NAM	12/07/2025	06:20	53	141	53	141	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 380	20281	2897	897	676	676	225
+52	75	NAM	12/07/2025	06:15	270	31	270	31	Dương bất thường Nước lá lốt	Ngâm chân 375	20281	2897	897	676	676	225
+53	89	NAM	29/04/2026	02:29	231	13	231	13	Dương bất thường Nước lá lốt	Ngâm chân 149	20572	2938	938	685	685	228
+54	40	NAM	29/04/2026	06:05	514	12	514	12	Dương bất thường Nước lá lốt	Ngâm chân 365	20572	2938	938	685	685	228
+55	360	NAM	29/04/2026	09:00	57	52	57	52	CUOI NA Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+56	240	AN	29/04/2026	20:00	85	172	85	172	1200	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+57	240	CHAU	29/04/2026	20:00	85	172	85	172	1200	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+58	240	NGOC	29/04/2026	20:00	85	172	85	172	1200	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+59	230	NAM	15/07/2025	07:26	88	44	88	44	Hoa mắt, chóng mặt Trà gừng mật ong nóng 446	Điều chỉnh sinh hoạt	20284	2897	897	676	676	225
+60	402	NAM	15/07/2025	09:47	50	184	50	184	Hoa mắt, chóng mặt Trà gừng mật ong nóng 587	Điều chỉnh sinh hoạt	20284	2897	897	676	676	225
+61	704	NAM	15/07/2025	18:08	28	572	28	572	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1088	20284	2897	897	676	676	225
+62	587	NAM	16/07/2025	13:13	34	327	34	327	Hoa mắt, chóng mặt Trà gừng mật ong nóng 793	Điều chỉnh sinh hoạt	20285	2897	897	676	676	225
+63	180	NAM	14/09/2013	09:00	88	122	88	122	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 540	15962	2280	280	532	532	177
+64	180	KA	14/09/2013	09:00	88	122	88	122	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 540	15962	2280	280	532	532	177
+65	10	KA	16/07/2025	00:25	2028	5	28	5	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 25	20285	2897	897	676	676	225
+66	10	NAM	16/07/2025	00:25	2028	5	28	5	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 25	20285	2897	897	676	676	225
+67	360	NAM	17/07/2025	06:00	56	126	56	126	Hoa mắt, chóng mặt Trà gừng mật ong nóng 360	Điều chỉnh sinh hoạt	20286	2898	898	676	676	225
+68	400	NAM	19/07/2025	14:40	50	288	50	288	Hoa mắt, chóng mặt Trà gừng mật ong nóng 880	Điều chỉnh sinh hoạt	20288	2898	898	676	676	225
+69	225	NAM	19/07/2025	12:45	90	38	90	38	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 765	20288	2898	898	676	676	225
+70	360	NAM	20/07/2025	06:00	56	129	56	129	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 360	20289	2898	898	676	676	225
+71	720	NAM	20/07/2025	15:00	28	129	28	129	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 900	20289	2898	898	676	676	225
+72	443	NAM	20/07/2025	19:37	45	354	45	354	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 1177	20289	2898	898	676	676	225
+73	288	NAM	21/07/2025	04:48	70	130	70	130	Dương bất thường Nước lá lốt	Ngâm chân 288	20290	2898	898	676	676	225
+74	192	NAM	21/07/2025	05:04	105	130	105	130	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 304	20290	2898	898	676	676	225
+75	960	NAM	21/07/2025	16:00	21	130	21	130	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 960	20290	2898	898	676	676	225
+76	1200	NAM	27/06/2025	23:45	16	1066	16	66	Đêm đói Sữa hạt ấm	Một ít hạt hạnh nhân 1425	20266	2895	895	675	675	225
+77	32	NAM	21/06/2025	02:44	633	4	633	4	Đêm đói Sữa hạt ấm	Một ít hạt hạnh nhân 164	20260	2894	894	675	675	225
+78	884	NAM	23/07/2025	17:08	22	844	22	844	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 1028	Điều chỉnh sinh hoạt	20292	2898	898	676	676	225
+79	208	NAM	17/07/2025	20:08	97	110	97	110	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 1208	20286	2898	898	676	676	225
+80	96	NAM	24/07/2025	05:48	211	37	211	37	vươn vai sảng khoái Duy trì vận động nhẹ	Uống nước lọc ấm 348	20293	2899	899	676	676	225
+81	96	NAM	24/07/2025	03:52	211	37	211	37	tiểu đêm Giảm nước sau 20h	Ăn giá đỗ chần 232	20293	2899	899	676	676	225
+82	540	NAM	26/07/2025	09:00	37	315	37	315	Nam đi nghia trang ngoc hoi Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20295	2899	899	676	676	225
+83	74	NAM	26/07/2025	06:47	274	19	274	19	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 407	20295	2899	899	676	676	225
+84	480	NAM	26/07/2025	08:00	42	135	42	135	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 480	20295	2899	899	676	676	225
+85	90	NAM	23/07/2025	07:30	225	42	225	42	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 450	20292	2898	898	676	676	225
+86	264	NAM	27/07/2025	05:16	76	232	76	232	vươn vai Điều chỉnh sinh hoạt 316	Điều chỉnh sinh hoạt	20296	2899	899	676	676	225
+87	160	NAM	27/07/2025	09:50	126	136	126	136	tiểu đêm Giảm nước sau 20h	Ăn giá đỗ chần 590	20296	2899	899	676	676	225
+88	420	NAM	27/07/2025	10:20	48	136	48	136	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 620	20296	2899	899	676	676	225
+89	115	NAM	28/07/2025	02:05	176	57	176	57	Dương bất thường Nước lá lốt	Ngâm chân 125	20297	2899	899	676	676	225
+90	96	NAM	28/07/2025	03:28	211	41	211	41	tiểu đêm Giảm nước sau 20h	Ăn giá đỗ chần 208	20297	2899	899	676	676	225
+91	660	NAM	28/07/2025	18:30	30	497	30	497	đi dạo Điều chỉnh sinh hoạt 1110	Điều chỉnh sinh hoạt	20297	2899	899	676	676	225
+92	620	NAM	28/07/2025	10:20	32	457	32	457	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 620	20297	2899	899	676	676	225
+93	298	NAM	29/07/2025	07:38	68	34	68	34	Buồn nôn, lạnh người Ngậm gừng tươi	Nước chanh gừng ấm 458	20298	2899	899	676	676	225
+94	345	NAM	29/07/2025	09:55	58	288	58	288	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 595	20298	2899	899	676	676	225
+95	380	NAM	30/07/2025	06:55	53	159	53	159	Khó chịu cáu gắt Trà bạc hà	Đi dạo nơi thoáng mát 415	20299	2899	899	676	676	225
+96	65	KA	29/07/2025	21:35	312	18	312	18	Khó chịu cáu gắt Trà bạc hà	Đi dạo nơi thoáng mát 1295	20298	2899	899	676	676	225
+97	630	NAM	30/07/2025	15:45	32	139	32	139	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 945	20299	2899	899	676	676	225
+98	912	NAM	30/07/2025	18:32	22	235	22	235	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 1112	Điều chỉnh sinh hoạt	20299	2899	899	676	676	225
+99	208	NAM	17/07/2025	20:08	97	110	97	110	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 1208	20286	2898	898	676	676	225
+100	288	NAM	28/07/2025	04:48	70	137	70	137	tiểu đêm Giảm nước sau 20h	Ăn giá đỗ chần 288	20297	2899	899	676	676	225
+101	645	NAM	02/08/2025	16:13	31	307	31	307	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 973	20302	2900	900	676	676	225
+102	630	NAM	02/08/2025	11:50	32	142	32	142	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 710	20302	2900	900	676	676	225
+103	278	NAM	03/08/2025	04:58	73	9	73	9	tiểu đêm Giảm nước sau 20h	Ăn giá đỗ chần 298	20303	2900	900	676	676	225
+104	290	NAM	04/08/2025	06:05	70	4	70	4	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 365	20304	2900	900	676	676	225
+105	5	NAM	03/08/2025	00:05	4060	3	60	3	Dương bất thường Nước lá lốt	Ngâm chân 5	20303	2900	900	676	676	225
+106	280	NAM	04/08/2025	20:55	72	144	72	144	Đau thái dương ngáp Nước lá lốt	Ngâm chân 1255	20304	2900	900	676	676	225
+107	585	NAM	04/08/2025	22:15	34	414	34	414	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20304	2900	900	676	676	225
+108	360	NAM	05/08/2025	07:45	56	145	56	145	Cáu gắt khó chịu Trà hoa cúc	Nghe nhạc nhẹ / Hít thở sâu 465	20305	2900	900	676	676	225
+109	760	NAM	05/08/2025	16:40	26	545	26	545	Hoa mắt, chóng mặt Trà gừng mật ong nóng 1000	Điều chỉnh sinh hoạt	20305	2900	900	676	676	225
+110	465	NAM	28/07/2025	07:45	43	302	43	302	Mắt có dử Điều chỉnh sinh hoạt 465	Điều chỉnh sinh hoạt	20297	2899	899	676	676	225
+111	900	NAM	05/08/2025	20:20	22	505	22	505	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 1220	Điều chỉnh sinh hoạt	20305	2900	900	676	676	225
+112	1060	NAM	05/08/2025	18:55	19	165	19	165	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 1135	20305	2900	900	676	676	225
+113	270	NAM	03/08/2025	07:45	75	53	75	53	Xoang mũi tắc Xông lá sả bạc hà	Rửa mũi nước muối 465	20303	2900	900	676	676	225
+114	360	NAM	05/08/2025	20:40	56	145	56	145	Buồn nôn, lạnh người Ngậm gừng tươi	Nước chanh gừng ấm 1240	20305	2900	900	676	676	225
+115	30	NAM	08/08/2025	23:30	676	28	676	28	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 1410	20308	2901	901	676	676	225
+116	446	NAM	09/08/2025	09:07	45	239	45	239	Hoa mắt, chóng mặt Trà gừng mật ong nóng 547	Điều chỉnh sinh hoạt	20309	2901	901	676	676	225
+117	120	NAM	09/08/2025	07:05	169	29	169	29	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 425	20309	2901	901	676	676	225
+118	480	NAM	08/08/2025	08:00	42	148	42	148	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 480	20308	2901	901	676	676	225
+119	1260	NAM	10/08/2025	21:45	16	150	16	150	Hoa mắt, chóng mặt Trà gừng mật ong nóng 1305	Điều chỉnh sinh hoạt	20310	2901	901	677	677	225
+120	510	NAM	10/08/2025	08:45	39	420	39	420	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 525	20310	2901	901	677	677	225
+121	510	NAM	10/08/2025	13:45	39	420	39	420	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 825	20310	2901	901	677	677	225
+122	370	NAM	10/08/2025	19:50	54	330	54	330	Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 1190	Điều chỉnh sinh hoạt	20310	2901	901	677	677	225
+123	10	NAM	11/08/2025	02:35	2031	1	31	1	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 155	20311	2901	901	677	677	225
+124	135	NAM	11/08/2025	02:45	150	61	150	61	Dương bất thường Nước lá lốt	Ngâm chân 165	20311	2901	901	677	677	225
+125	100	BANH	11/08/2025	15:25	203	11	203	11	Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 925	Điều chỉnh sinh hoạt	20311	2901	901	677	677	225
+126	270	AN	10/08/2025	06:45	75	60	75	60	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 405	Điều chỉnh sinh hoạt	20310	2901	901	677	677	225
+127	270	CHÂU	10/08/2025	06:45	75	60	75	60	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 405	Điều chỉnh sinh hoạt	20310	2901	901	677	677	225
+128	270	NGỌC	10/08/2025	06:45	75	60	75	60	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 405	Điều chỉnh sinh hoạt	20310	2901	901	677	677	225
+129	815	NAM	12/08/2025	13:35	24	752	24	752	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 815	20312	2901	901	677	677	225
+130	180	NAM	13/08/2025	07:30	112	153	112	153	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 450	20313	2901	901	677	677	225
+131	240	NAM	14/08/2025	05:35	84	154	84	154	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 335	20314	2902	902	677	677	225
+132	300	NAM	14/08/2025	22:15	67	214	67	214	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20314	2902	902	677	677	225
+133	225	NAM	16/08/2025	06:15	90	66	90	66	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 375	20316	2902	902	677	677	225
+134	540	NAM	16/08/2025	10:30	37	336	37	336	Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 630	Điều chỉnh sinh hoạt	20316	2902	902	677	677	225
+135	400	NGỌC	16/08/2025	11:40	50	316	50	316	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 700	20316	2902	902	677	677	225
+136	90	NAM	17/08/2025	12:15	225	67	225	67	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 735	20317	2902	902	677	677	225
+137	360	NAM	17/08/2025	09:00	56	157	56	157	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 540	20317	2902	902	677	677	225
+138	528	NAM	08/08/2025	09:16	38	244	38	244	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 556	20308	2901	901	676	676	225
+139	120	NAM	15/08/2025	11:55	169	35	169	35	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 715	Điều chỉnh sinh hoạt	20315	2902	902	677	677	225
+140	30	NAM	19/08/2025	12:15	677	9	677	9	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 735	20319	2902	902	677	677	225
+141	540	NAM	20/08/2025	20:20	37	340	37	340	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 1220	20320	2902	902	677	677	225
+142	3	NAM	21/08/2025	05:27	6773	2	773	2	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 327	20321	2903	903	677	677	225
+143	300	NAM	21/08/2025	06:15	67	221	67	221	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 375	20321	2903	903	677	677	225
+144	870	NAM	21/08/2025	20:30	23	311	23	311	Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 1230	Điều chỉnh sinh hoạt	20321	2903	903	677	677	225
+145	790	NAM	22/08/2025	17:10	25	572	25	572	Khó thở, nóng bừng Mở cửa thoáng	Day huyệt Đản trung/cafe/bia 1030	20322	2903	903	677	677	225
+146	815	NAM	22/08/2025	18:05	24	762	24	762	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 1085	20322	2903	903	677	677	225
+147	15	NAM	23/08/2025	00:15	1354	13	354	13	Dương bất thường Nước lá lốt	Ngâm chân 15	20323	2903	903	677	677	225
+148	246	NAM	23/08/2025	08:18	82	151	82	151	Đột quỵ, ngã, đau đầu Điều chỉnh sinh hoạt 498	Điều chỉnh sinh hoạt	20323	2903	903	677	677	225
+149	60	NAM	23/08/2025	10:15	338	43	338	43	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 615	20323	2903	903	677	677	225
+150	135	AN	23/08/2025	10:45	150	73	150	73	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 645	Điều chỉnh sinh hoạt	20323	2903	903	677	677	225
+151	495	NAM	25/08/2025	08:15	41	30	41	30	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 495	20325	2903	903	677	677	225
+152	165	KA	25/08/2025	06:25	123	30	123	30	bắt đầu Nước gừng đường đen ấm	Tránh đồ lạnh 385	20325	2903	903	677	677	225
+153	250	KA	28/08/2025	06:25	81	78	81	78	hết Canh gà hầm táo đỏ	Bổ sung sắt (thịt bò, gan) 385	20328	2904	904	677	677	225
+154	220	KA	05/09/2025	06:25	92	96	92	96	KA HKINH RT Điều chỉnh sinh hoạt 385	Điều chỉnh sinh hoạt	20336	2905	905	677	677	225
+155	585	AN	26/08/2025	10:45	34	436	34	436	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 645	Điều chỉnh sinh hoạt	20326	2903	903	677	677	225
+156	450	NAM	26/08/2025	10:30	45	76	45	76	Buồn nôn, lạnh người Ngậm gừng tươi	Nước chanh gừng ấm 630	20326	2903	903	677	677	225
+157	315	NAM	27/08/2025	15:45	64	167	64	167	Khó thở, nóng bừng Mở cửa thoáng	Day huyệt Đản trung/cafe/bia 945	20327	2903	903	677	677	225
+158	330	NAM	26/08/2025	19:45	61	196	61	196	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 1185	20326	2903	903	677	677	225
+159	30	NAM	28/08/2025	13:45	677	18	677	18	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 825	20328	2904	904	677	677	225
+160	630	NAM	28/08/2025	18:45	32	168	32	168	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 1125	Điều chỉnh sinh hoạt	20328	2904	904	677	677	225
+161	1200	NAM	21/08/2025	20:00	16	1121	16	121	Rượu hành rượu bình Điều chỉnh sinh hoạt 1200	Điều chỉnh sinh hoạt	20321	2903	903	677	677	225
+162	720	NAM	24/08/2025	20:00	28	164	28	164	Rượu hành rượu bình Điều chỉnh sinh hoạt 1200	Điều chỉnh sinh hoạt	20324	2903	903	677	677	225
+163	240	NAM	27/08/2025	20:00	84	167	84	167	Rượu hành rượu bình Điều chỉnh sinh hoạt 1200	Điều chỉnh sinh hoạt	20327	2903	903	677	677	225
+164	270	NAM	30/08/2025	06:30	75	80	75	80	Rượu hành rượu bình Điều chỉnh sinh hoạt 390	Điều chỉnh sinh hoạt	20330	2904	904	677	677	225
+165	300	NAM	02/09/2025	06:30	67	233	67	233	Rượu hành rượu bình Điều chỉnh sinh hoạt 390	Điều chỉnh sinh hoạt	20333	2904	904	677	677	225
+166	900	NAM	28/08/2025	18:30	22	528	22	528	Họp phụ huynh An Điều chỉnh sinh hoạt 1110	Điều chỉnh sinh hoạt	20328	2904	904	677	677	225
+167	855	NAM	01/09/2025	22:15	23	667	23	667	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20332	2904	904	677	677	225
+168	30	NAM	02/09/2025	08:45	677	23	677	23	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 525	20333	2904	904	677	677	225
+169	315	NAM	04/09/2025	07:45	64	175	64	175	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 465	20335	2905	905	677	677	225
+170	1275	NAM	05/09/2025	22:15	15	1211	15	211	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20336	2905	905	677	677	225
+171	150	NAM	07/09/2025	22:15	135	88	135	88	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20338	2905	905	677	677	225
+172	90	NAM	07/09/2025	06:45	225	88	225	88	Đi ngoài talking Canh rau muống luộc	Nước rau má 405	20338	2905	905	677	677	225
+173	550	NAM	08/09/2025	17:10	36	539	36	539	Đi ngoài talking Canh rau muống luộc	Nước rau má 1030	20339	2905	905	677	677	225
+174	360	HANG	29/04/2026	09:00	57	52	57	52	CUOI HANG Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+175	360	PHƯƠNG	29/04/2026	09:00	57	52	57	52	CUOI PHƯƠNG Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+176	360	NAM	29/04/2026	09:00	57	52	57	52	AN HOI Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+177	360	HANG	29/04/2026	09:00	57	52	57	52	AN HOI Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+178	360	PHƯƠNG	29/04/2026	09:00	57	52	57	52	AN HOI Điều chỉnh sinh hoạt 540	Điều chỉnh sinh hoạt	20572	2938	938	685	685	228
+179	350	NAM	10/09/2025	08:10	58	41	58	41	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 490	20341	2905	905	678	678	226
+180	570	NAM	11/09/2025	22:15	35	392	35	392	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20342	2906	906	678	678	226
+181	360	NAM	10/09/2025	08:50	56	181	56	181	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 530	20341	2905	905	678	678	226
+182	260	NAM	13/09/2025	09:25	78	64	78	64	Đi ngoài talking Canh rau muống luộc	Nước rau má 565	20344	2906	906	678	678	226
+183	270	NAM	12/09/2025	06:30	75	93	75	93	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 390	20343	2906	906	678	678	226
+184	440	NAM	16/09/2025	18:25	46	107	46	107	Đi ngoài són Canh rau muống luộc	Nước rau má 1105	20347	2906	906	678	678	226
+185	252	NAM	16/09/2025	04:21	80	187	80	187	Tim đập mạnh	nhịp yếu Cháo hạt sen long nhãn 261	20347	2906	906	678	678	226
+186	180	NAM	16/09/2025	06:30	113	7	113	7	Đau lưng, mỏi vai gáy Nước đậu đen rang	Chườm ngải cứu nóng 390	20347	2906	906	678	678	226
+187	945	NAM	16/09/2025	19:45	21	502	21	502	Ngứa da, mẩn nhiệt Nước sắn dây	Đậu đen xanh lòng 1185	20347	2906	906	678	678	226
+188	240	NAM	16/09/2025	17:30	84	187	84	187	Viêm họng sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 1050	Điều chỉnh sinh hoạt	20347	2906	906	678	678	226
+189	1110	NAM	20/09/2025	21:30	18	371	18	371	Đi ngoài talking Canh rau muống luộc	Nước rau má 1290	20351	2907	907	678	678	226
+190	1170	NAM	23/09/2025	21:15	17	464	17	464	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1275	20354	2907	907	678	678	226
+191	432	NAM	24/09/2025	09:54	47	51	47	51	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 594	20355	2907	907	678	678	226
+192	315	NAM	26/09/2025	06:45	64	197	64	197	Khó thở, nóng bừng Mở cửa thoáng	Day huyệt Đản trung/cafe/bia 405	20357	2908	908	678	678	226
+193	45	NAM	26/09/2025	08:15	452	17	452	17	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 495	20357	2908	908	678	678	226
+194	450	NAM	24/03/2025	07:30	44	371	44	371	Viêm họng sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 450	Điều chỉnh sinh hoạt	20171	2881	881	672	672	224
+195	360	NAM	24/09/2025	07:30	56	195	56	195	Viêm họng sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 450	Điều chỉnh sinh hoạt	20355	2907	907	678	678	226
+196	185	NAM	27/09/2025	20:05	110	8	110	8	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1205	20358	2908	908	678	678	226
+197	250	NAM	28/09/2025	08:05	81	109	81	109	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 485	20359	2908	908	678	678	226
+198	5	NAM	30/09/2025	00:05	4072	1	72	1	BỤNG CỨNG Điều chỉnh sinh hoạt 5	Điều chỉnh sinh hoạt	20361	2908	908	678	678	226
+199	360	NAM	01/10/2025	09:30	56	202	56	202	BỤNG CỨNG Điều chỉnh sinh hoạt 570	Điều chỉnh sinh hoạt	20362	2908	908	678	678	226
+200	825	NAM	02/10/2025	20:45	24	563	24	563	Buồn nôn, lạnh người Ngậm gừng tươi	Nước chanh gừng ấm 1245	20363	2909	909	678	678	226
+201	155	NAM	03/10/2025	05:05	131	59	131	59	Cảm mệt tụt áp Điều chỉnh sinh hoạt 305	Điều chỉnh sinh hoạt	20364	2909	909	678	678	226
+202	290	NAM	05/10/2025	05:05	70	66	70	66	Nứt kẽ tai trái Điều chỉnh sinh hoạt 305	Điều chỉnh sinh hoạt	20366	2909	909	678	678	226
+203	165	NAM	06/10/2025	08:45	123	72	123	72	Đau bụng, đầy bụng, tiêu chảy Cháo trắng + Gừng già 525	Điều chỉnh sinh hoạt	20367	2909	909	678	678	226
+204	400	NAM	08/10/2025	08:50	50	369	50	369	Buồn ngủ, mệt mỏi Trà táo đỏ kỳ tử	Vận động nhẹ 530	20369	2909	909	678	678	226
+205	1050	NAM	11/10/2025	22:15	19	422	19	422	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20372	2910	910	679	679	226
+206	35	NAM	17/10/2025	14:05	582	8	582	8	Đi ỉa lỏng Điều chỉnh sinh hoạt 845	Điều chỉnh sinh hoạt	20378	2911	911	679	679	226
+207	550	NAM	20/10/2025	12:05	37	31	37	31	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 725	20381	2911	911	679	679	226
+208	480	NAM	30/10/2025	08:00	42	231	42	231	Tim như bị mèo cào Cháo hạt sen long nhãn 480	Điều chỉnh sinh hoạt	20391	2913	913	679	679	226
+209	415	NAM	29/10/2025	14:05	49	55	49	55	Đi ỉa lỏng Điều chỉnh sinh hoạt 845	Điều chỉnh sinh hoạt	20390	2912	912	679	679	226
+210	690	NAM	02/11/2025	22:15	29	384	29	384	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20394	2913	913	679	679	226
+211	270	AN	30/10/2025	06:45	75	141	75	141	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 405	Điều chỉnh sinh hoạt	20391	2913	913	679	679	226
+212	135	CHÂU	02/11/2025	06:45	151	9	151	9	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 405	Điều chỉnh sinh hoạt	20394	2913	913	679	679	226
+213	795	NAM	03/11/2025	22:15	25	520	25	520	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 1335	Điều chỉnh sinh hoạt	20395	2913	913	679	679	226
+214	195	NAM	10/11/2025	22:15	104	122	104	122	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20402	2914	914	680	680	226
+215	699	NAM	05/05/2007	14:27	19	357	19	357	Tim như bị mèo cào Cháo hạt sen long nhãn 867	Điều chỉnh sinh hoạt	13638	1948	948	454	454	151
+216	45	NAM	13/11/2025	14:05	453	20	453	20	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 845	20405	2915	915	680	680	226
+217	1245	NAM	20/11/2025	22:15	16	492	16	492	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20412	2916	916	680	680	226
+218	540	NAM	26/11/2025	22:15	37	438	37	438	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20418	2916	916	680	680	226
+219	435	NAM	18/11/2025	07:45	46	400	46	400	Hoa mắt, chóng mặt Trà gừng mật ong nóng 465	Điều chỉnh sinh hoạt	20410	2915	915	680	680	226
+220	420	NAM	23/11/2025	11:45	48	255	48	255	Hoa mắt, chóng mặt Trà gừng mật ong nóng 705	Điều chỉnh sinh hoạt	20415	2916	916	680	680	226
+221	90	NAM	25/11/2025	17:45	226	77	226	77	Hoa mắt, chóng mặt Trà gừng mật ong nóng 1065	Điều chỉnh sinh hoạt	20417	2916	916	680	680	226
+222	90	NAM	25/11/2025	17:45	226	77	226	77	Táo bón Điều chỉnh sinh hoạt 1065	Điều chỉnh sinh hoạt	20417	2916	916	680	680	226
+223	90	NAM	25/11/2025	17:45	226	77	226	77	Táo bón Điều chỉnh sinh hoạt 1065	Điều chỉnh sinh hoạt	20417	2916	916	680	680	226
+224	150	NAM	05/12/2025	22:15	136	27	136	27	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20427	2918	918	680	680	226
+225	255	NAM	06/12/2025	22:15	80	28	80	28	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20428	2918	918	680	680	226
+226	360	NAM	07/12/2025	22:15	56	269	56	269	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20429	2918	918	680	680	226
+227	150	NAM	05/12/2025	22:15	136	27	136	27	Mũi sưng trong Điều chỉnh sinh hoạt 1335	Điều chỉnh sinh hoạt	20427	2918	918	680	680	226
+228	495	NAM	15/12/2025	14:05	41	142	41	142	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 845	20437	2919	919	681	681	227
+229	390	NAM	20/12/2025	22:15	52	162	52	162	Mất ngủ Trà tâm sen	Canh hoa thiên lý 1335	20442	2920	920	681	681	227
+230	285	NAM	19/12/2025	22:15	71	206	71	206	hết sưng mũi Canh gà hầm táo đỏ	Bổ sung sắt (thịt bò, gan) 1335	20441	2920	920	681	681	227
+231	1125	NAM	16/12/2025	20:15	18	188	18	188	Nhọt ở mông Nước đậu xanh cả vỏ	Mướp đắng / Đắp diếp cá 1215	20438	2919	919	681	681	227
+232	45	NAM	19/12/2025	12:15	454	11	454	11	WC Điều chỉnh sinh hoạt 735	Điều chỉnh sinh hoạt	20441	2920	920	681	681	227
+233	900	NAM	23/12/2025	19:30	22	645	22	645	đầy bụng Nước gừng ấm	Đu đủ chín / Sữa chua 1170	20445	2920	920	681	681	227
+234	1170	NAM	24/12/2025	19:30	17	556	17	556	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1170	20446	2920	920	681	681	227
+235	1230	NAM	28/12/2025	22:15	16	770	16	770	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 1335	Điều chỉnh sinh hoạt	20450	2921	921	681	681	227
+236	1230	NAM	28/12/2025	22:15	16	770	16	770	Viêm họng, sổ mũi Nước chanh sả gừng ấm, Củ cải, Lê 1335	Điều chỉnh sinh hoạt	20450	2921	921	681	681	227
+237	1230	NAM	28/12/2025	22:15	16	770	16	770	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1335	20450	2921	921	681	681	227
+238	1230	NAM	28/12/2025	22:15	16	770	16	770	TIM Cháo hạt sen long nhãn 1335	Điều chỉnh sinh hoạt	20450	2921	921	681	681	227
+239	1230	NAM	28/12/2025	22:15	16	770	16	770	Đau lưng Nước đậu đen rang	Chườm ngải cứu nóng 1335	20450	2921	921	681	681	227
+240	1230	NAM	28/12/2025	22:15	16	770	16	770	Đau lưng Nước đậu đen rang	Chườm ngải cứu nóng 1335	20450	2921	921	681	681	227
+241	1230	NAM	28/12/2025	22:15	16	770	16	770	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1335	20450	2921	921	681	681	227
+242	135	NAM	02/02/2026	07:45	151	101	151	101	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 465	20486	2926	926	682	682	227
+243	420	NAM	05/02/2026	19:45	48	329	48	329	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 1185	20489	2927	927	682	682	227
+244	815	NAM	22/01/2026	13:35	25	100	25	100	tim nhói Cháo hạt sen long nhãn 815	Điều chỉnh sinh hoạt	20475	2925	925	682	682	227
+245	1080	NAM	24/01/2026	21:08	18	1037	18	37	tim nhói Cháo hạt sen long nhãn 1268	Điều chỉnh sinh hoạt	20477	2925	925	682	682	227
+246	440	NAM	26/01/2026	09:44	46	239	46	239	Lưng đau mỏi Điều chỉnh sinh hoạt 584	Điều chỉnh sinh hoạt	20479	2925	925	682	682	227
+247	510	NAM	31/01/2026	15:30	40	84	40	84	tim nhói Cháo hạt sen long nhãn 930	Điều chỉnh sinh hoạt	20484	2926	926	682	682	227
+248	24	NAM	04/02/2026	06:48	853	16	853	16	tim nhói Cháo hạt sen long nhãn 408	Điều chỉnh sinh hoạt	20488	2926	926	682	682	227
+249	688	NAM	22/01/2026	16:04	29	523	29	523	tim nhói Cháo hạt sen long nhãn 964	Điều chỉnh sinh hoạt	20475	2925	925	682	682	227
+250	1148	NAM	22/01/2026	20:31	17	959	17	959	tim nhói Cháo hạt sen long nhãn 1231	Điều chỉnh sinh hoạt	20475	2925	925	682	682	227
+251	24	NAM	23/01/2026	00:49	853	4	853	4	tim nhói Cháo hạt sen long nhãn 49	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+252	128	NAM	23/01/2026	05:28	159	124	159	124	tim nhói Cháo hạt sen long nhãn 328	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+253	209	NAM	23/01/2026	06:17	97	203	97	203	tay phải Điều chỉnh sinh hoạt 377	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+254	640	NAM	23/01/2026	18:40	31	636	31	636	tim nhói Cháo hạt sen long nhãn 1120	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+255	261	NAM	23/01/2026	04:59	78	118	78	118	cung cu Điều chỉnh sinh hoạt 299	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+256	960	NAM	23/01/2026	22:00	21	316	21	316	cung cu Điều chỉnh sinh hoạt 1320	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+257	960	NAM	23/01/2026	22:00	21	316	21	316	chốc mép Điều chỉnh sinh hoạt 1320	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+258	360	KA	23/01/2026	21:00	56	316	56	316	Kinh dom Điều chỉnh sinh hoạt 1260	Điều chỉnh sinh hoạt	20476	2925	925	682	682	227
+259	360	NAM	23/01/2026	14:00	56	316	56	316	Đi ngoài ra máu Canh rau muống luộc	Nước rau má 840	20476	2925	925	682	682	227
+260	540	NAM	10/03/2026	18:30	38	2	38	2	Mệt ngủ Hạt sen	Trà dưỡng tâm / Ngâm chân nước nóng 1110	20522	2931	931	684	684	228
+261	30	NAM	19/03/2026	08:30	684	11	684	11	Rã rời óc Trà hoa cúc	Nghe nhạc nhẹ / Hít thở sâu 510	20531	2933	933	684	684	228
+262	510	NAM	20/03/2026	18:30	40	132	40	132	Căng thẳng đầu Day huyệt Thái dương	Trà bạc hà / Nghỉ ngơi 1110	20532	2933	933	684	684	228
+263	450	NAM	20/03/2026	08:30	45	282	45	282	TIM, MỆT MỎI Cháo hạt sen long nhãn 510	Điều chỉnh sinh hoạt	20532	2933	933	684	684	228
+264	345	NAM	18/05/2026	10:45	59	236	59	236	Hoa mắt, chóng mặt Trà gừng mật ong nóng 645	Điều chỉnh sinh hoạt	20591	2941	941	686	686	228
+265	210	NAM	24/05/2026	06:30	98	17	98	17	răng cao tiêu viêm, thuốc vỉ 390	Điều chỉnh sinh hoạt	20597	2942	942	686	686	228
+266	130	NAM	30/05/2026	09:35	158	63	158	63	buồn ngủ Trà táo đỏ kỳ tử	Vận động nhẹ 575	20603	2943	943	686	686	228
+267	570	NAM	31/05/2026	09:30	36	84	36	84	buồn ngủ Trà táo đỏ kỳ tử	Vận động nhẹ 570	20604	2943	943	686	686	228
+268	720	NAM	18/09/2026	18:45	28	554	28	554	Đau Bụng, Đi lỏng Cháo trắng + Gừng già 1125	Điều chỉnh sinh hoạt	20714	2959	959	690	690	230
+269	400	NAM	26/09/2026	09:20	51	322	51	322	buồn ngủ Trà táo đỏ kỳ tử	Vận động nhẹ 560	20722	2960	960	690	690	230
+270	30	NAM	27/09/2026	12:05	690	23	690	23	buồn ngủ Trà táo đỏ kỳ tử	Vận động nhẹ 725	20723	2960	960	690	690	230
+271	650	NAM	28/09/2026	12:10	31	574	31	574	buồn ngủ Trà táo đỏ kỳ tử	Vận động nhẹ 730	20724	2960	960	690	690	230
