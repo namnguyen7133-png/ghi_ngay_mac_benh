@@ -16,7 +16,7 @@
 
         <!-- Thanh chuyển Tabs -->
         <div class="flex border-b border-slate-700 mb-6">
-            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Chọn Danh Sách Tên (Từ GitHub)</button>
+            <button onclick="switchTab(1)" id="tabBtn1" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-cyan-400 text-cyan-400 transition">Tab 1: Chọn Danh Sách Tên (GitHub)</button>
             <button onclick="switchTab(2)" id="tabBtn2" class="flex-1 py-3 px-4 text-center font-bold border-b-2 border-transparent text-slate-400 hover:text-slate-200 transition">Tab 2: Nhập Liệu & Tính Toán</button>
         </div>
 
@@ -62,7 +62,6 @@
                 <h2 class="text-lg font-semibold text-cyan-300">Nhập Thông Tin Khám & Bệnh Án</h2>
                 
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                    <!-- Chọn tên (Tự động điền ngày/giờ sinh từ dấu |) -->
                     <div>
                         <label class="block text-sm font-medium mb-1 text-slate-300">Chọn Tên Người (Cột 1):</label>
                         <select id="selectedName" onchange="onNameSelected()" class="w-full bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500">
@@ -70,18 +69,15 @@
                         </select>
                     </div>
 
-                    <!-- Ngày tháng năm sinh & Giờ sinh (Tự động điền) -->
                     <div>
                         <label class="block text-sm font-medium mb-1 text-slate-300">Ngày Sinh & Giờ Sinh (Tự động từ |):</label>
                         <div class="flex gap-2">
                             <input type="date" id="birthDate" class="flex-1 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Ngày sinh">
-                            <!-- Dùng thẻ input text hỗ trợ nhập giờ trực tiếp chuẩn 24h hoặc chọn -->
                             <input type="text" id="birthTime" placeholder="HH:mm (VD: 21:00)" class="w-36 bg-slate-700 border border-slate-600 rounded-lg p-2.5 text-white focus:ring-2 focus:ring-cyan-500" title="Giờ sinh (24h)">
                         </div>
                     </div>
                 </div>
 
-                <!-- Ô chọn Ngày sự kiện & Giờ phút nhập vào (Định dạng 24h chuẩn) -->
                 <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 bg-slate-900/50 p-3 rounded-lg border border-slate-700">
                     <div>
                         <label class="block text-sm font-medium mb-1 text-amber-300">Ngày Nhập Vào (Sự Kiện):</label>
@@ -114,10 +110,18 @@
             <!-- Bảng kết quả -->
             <div class="bg-slate-800 p-5 rounded-xl shadow-lg border border-slate-700 space-y-4">
                 <div class="flex justify-between items-center flex-wrap gap-2">
-                    <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả Đã Lưu Lâu Dài</h2>
-                    <div class="space-x-2">
-                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">Tải Tệp Kết Quả (.txt) Cho Python</button>
-                        <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition">Xóa Hết Bảng</button>
+                    <h2 class="text-lg font-semibold text-cyan-300">Bảng Kết Quả & Gửi Lên Repo GitHub</h2>
+                    <div class="flex flex-wrap gap-2 items-center">
+                        <!-- Ô nhập tên file muốn lưu trực tiếp trên repo -->
+                        <input type="text" id="targetRepoFileName" placeholder="Tên file trên repo (VD: ket_qua.txt)" class="bg-slate-900 border border-slate-700 rounded-lg px-3 py-1.5 text-xs text-white">
+                        
+                        <!-- Nút đẩy trực tiếp lên GitHub -->
+                        <button onclick="pushResultToGitHubRepo()" class="bg-purple-600 hover:bg-purple-500 text-sm font-bold py-2 px-3 rounded-lg transition text-white">🚀 Gửi Lên Trực Tiếp Repo</button>
+                        
+                        <!-- Vẫn giữ nút tải về máy tính cũ -->
+                        <button onclick="exportTxtFile()" class="bg-blue-600 hover:bg-blue-500 text-sm font-bold py-2 px-3 rounded-lg transition">📥 Tải Về Máy (.txt)</button>
+                        
+                        <button onclick="clearResults()" class="bg-rose-600/50 hover:bg-rose-600 text-sm font-bold py-2 px-3 rounded-lg transition">Xóa Hết</button>
                     </div>
                 </div>
 
@@ -151,7 +155,10 @@
     </div>
 
     <script>
-        let parsedRowsData = []; // Lưu trữ cấu trúc các dòng đã tách dấu |
+        const repoOwner = "namnguyen7133-png";
+        const repoName = "ghi_ngay_mac_benh";
+        
+        let parsedRowsData = [];
         let resultsData = [];
 
         function setDefaultEventTime() {
@@ -186,10 +193,7 @@
         });
 
         async function fetchRepoTxtFiles() {
-            const repoOwner = "namnguyen7133-png";
-            const repoName = "ghi_ngay_mac_benh";
             const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/`;
-
             const selectEl = document.getElementById('githubFileList');
             try {
                 const response = await fetch(apiUrl);
@@ -266,7 +270,6 @@
         setInterval(updateClock, 1000);
         updateClock();
 
-        // Tự động phân tích các dòng có dấu | (VD: Tên | Ngày sinh | Giờ sinh...)
         function saveAndApplyNames() {
             const rawText = document.getElementById('namesInput').value;
             const lines = rawText.split(/\r?\n/).map(l => l.trim()).filter(l => l);
@@ -282,17 +285,15 @@
 
             lines.forEach((line, index) => {
                 let parts = line.split('|').map(p => p.trim());
-                let fullName = line; // Giữ nguyên chuỗi gốc hiển thị trong dropdown nếu muốn
+                let fullName = line;
                 let birthDate = "";
-                let birthHour = "00";
+                let birthHour = "00:00";
 
                 if (parts.length >= 3) {
-                    // Cấu trúc: Tên | Ngày/Tháng/Năm | Giờ sinh ...
                     fullName = parts[0];
-                    let rawDate = parts[1]; // VD: 3/3/1971 hoặc 03/03/1971
-                    let rawHour = parts[2]; // VD: 21
+                    let rawDate = parts[1];
+                    let rawHour = parts[2];
 
-                    // Chuẩn hóa ngày sinh sang dạng yyyy-MM-dd cho thẻ input date
                     let dateParts = rawDate.split('/');
                     if (dateParts.length === 3) {
                         let d = dateParts[0].padStart(2, '0');
@@ -300,8 +301,6 @@
                         let y = dateParts[2];
                         birthDate = `${y}-${m}-${d}`;
                     }
-
-                    // Chuẩn hóa giờ sinh
                     birthHour = String(rawHour).padStart(2, '0') + ":00";
                 } else if (parts.length === 2) {
                     fullName = parts[0];
@@ -326,23 +325,17 @@
             switchTab(2);
         }
 
-        // Khi chọn tên, tự động điền ngày sinh và giờ sinh vào form
         function onNameSelected() {
             const selectedIdx = document.getElementById('selectedName').value;
             if (selectedIdx === "") return;
 
             const data = parsedRowsData[selectedIdx];
             if (data) {
-                if (data.birthDate) {
-                    document.getElementById('birthDate').value = data.birthDate;
-                }
-                if (data.birthTime) {
-                    document.getElementById('birthTime').value = data.birthTime;
-                }
+                if (data.birthDate) document.getElementById('birthDate').value = data.birthDate;
+                if (data.birthTime) document.getElementById('birthTime').value = data.birthTime;
             }
         }
 
-        // Tính toán theo đúng công thức yêu cầu
         function calculateAndAdd() {
             const selectedIdx = document.getElementById('selectedName').value;
             if (selectedIdx === "") {
@@ -368,26 +361,22 @@
             const birthDateObj = new Date(birthVal);
             const eventDateObj = new Date(eventDateVal);
 
-            // 1. Số ngày chênh lệch giữa ngày sự kiện và ngày sinh
             const diffTime = eventDateObj - birthDateObj;
             const dayDiff = Math.floor(diffTime / (1000 * 60 * 60 * 24));
 
-            // 2. Đổi số ngày chênh lệch ra giờ (= số ngày * 24)
             let totalHours = dayDiff * 24;
 
-            // 3. Xử lý giờ sinh: cộng với giờ sinh trước 24 giờ đêm và trừ đi sinh sau 24 giờ đêm
             const [bHoursStr] = birthTimeVal.split(':');
             const birthHours = parseInt(bHoursStr, 10);
             
             if (birthHours < 24) {
-                totalHours += birthHours; // Cộng giờ sinh trước 24h
+                totalHours += birthHours;
             } else {
-                totalHours -= birthHours; // Trừ đi nếu sau 24h
+                totalHours -= birthHours;
             }
 
             const col2 = totalHours;
 
-            // 4. STT phút của giờ phút nhập vào sự kiện (Cột 3)
             const [eHoursStr, eMinutesStr] = eventTimeVal.split(':');
             const eventHours = parseInt(eHoursStr, 10);
             const eventMinutes = parseInt(eMinutesStr, 10);
@@ -398,7 +387,6 @@
                 return;
             }
 
-            // 5. Phép tính chia
             const col4 = (col2 / col3).toFixed(2);
             const col5 = Math.floor(col2 / col3);
             const col6 = col2 % col3;
@@ -488,18 +476,22 @@
             }
         }
 
+        // Tạo nội dung file chuẩn
+        function buildFileContent() {
+            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tngày nhập\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
+            resultsData.forEach(item => {
+                fileContent += `${item.col1}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col4}\t${item.eventDate}\t${item.time}\t${item.col1}\t${item.symptom}\t${item.cure}\t${item.col3}\n`;
+            });
+            return fileContent;
+        }
+
+        // Tải tệp kết quả về máy tính
         function exportTxtFile() {
             if (resultsData.length === 0) {
                 alert("Chưa có dữ liệu để xuất!");
                 return;
             }
-
-            let fileContent = "cột 1\tphần nguyên cột 5\tphần dư cột 6\tphần dư 1000 cột 5\tphần dư 1000 cột 6\tthuong so\tngày nhập\tgiờ phút\ttên\tbệnh\tthuốc\tstt\n";
-            
-            resultsData.forEach(item => {
-                fileContent += `${item.col1}\t${item.col5}\t${item.col6}\t${item.col7}\t${item.col8}\t${item.col4}\t${item.eventDate}\t${item.time}\t${item.col1}\t${item.symptom}\t${item.cure}\t${item.col3}\n`;
-            });
-
+            const fileContent = buildFileContent();
             const blob = new Blob([fileContent], { type: 'text/plain;charset=utf-8' });
             const url = URL.createObjectURL(blob);
             const a = document.createElement('a');
@@ -509,6 +501,70 @@
             a.click();
             document.body.removeChild(a);
             URL.revokeObjectURL(url);
+        }
+
+        // Đẩy nội dung trực tiếp lên Repo GitHub thông qua GitHub API
+        async function pushResultToGitHubRepo() {
+            if (resultsData.length === 0) {
+                alert("Chưa có dữ liệu kết quả để gửi lên repo!");
+                return;
+            }
+
+            let fileName = document.getElementById('targetRepoFileName').value.trim();
+            if (!fileName) {
+                fileName = `ket_qua_benh_an_${new Date().toISOString().slice(0,10)}.txt`;
+            }
+            if (!fileName.endsWith('.txt')) {
+                fileName += '.txt';
+            }
+
+            // Yêu cầu nhập GitHub Personal Access Token (PAT) để cấp quyền ghi vào repo
+            const token = prompt("Nhập GitHub Personal Access Token (PAT) của anh để cấp quyền ghi tệp lên repo:");
+            if (!token) return;
+
+            const fileContent = buildFileContent();
+            // Mã hóa nội dung sang Base64 chuẩn UTF-8 để GitHub API nhận diện
+            const base64Content = btoa(unescape(encodeURIComponent(fileContent)));
+            
+            const apiUrl = `https://api.github.com/repos/${repoOwner}/${repoName}/contents/${fileName}`;
+
+            try {
+                // Kiểm tra xem file đã tồn tại trên repo chưa để lấy SHA (GitHub yêu cầu SHA nếu cập nhật file cũ)
+                let sha = null;
+                const checkRes = await fetch(apiUrl);
+                if (checkRes.ok) {
+                    const fileData = await checkRes.json();
+                    sha = fileData.sha;
+                }
+
+                // Gửi request PUT lên GitHub API
+                const bodyData = {
+                    message: `Cập nhật kết quả bệnh án tự động từ web - ${new Date().toLocaleString()}`,
+                    content: base64Content
+                };
+                if (sha) {
+                    bodyData.sha = sha; // Bắt buộc phải có sha nếu ghi đè file cũ
+                }
+
+                const putRes = await fetch(apiUrl, {
+                    method: 'PUT',
+                    headers: {
+                        'Authorization': `token ${token}`,
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(bodyData)
+                });
+
+                if (putRes.ok) {
+                    alert(`Đã gửi và cập nhật tệp "${fileName}" lên repo GitHub thành công!`);
+                    fetchRepoTxtFiles(); // Cập nhật lại danh sách file ở Tab 1
+                } else {
+                    const errJson = await putRes.json();
+                    alert("Lỗi khi gửi lên GitHub: " + (errJson.message || putRes.statusText));
+                }
+            } catch (err) {
+                alert("Lỗi kết nối khi đẩy dữ liệu lên GitHub: " + err);
+            }
         }
     </script>
 </body>
